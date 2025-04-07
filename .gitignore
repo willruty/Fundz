@@ -1,0 +1,32 @@
+# Applications 
+*.exe
+*.exe~
+*.conf
+*.example
+*.env
+*.rar
+*.zip
+*.pdf
+*.xml
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+*.xte
+*.xtr
+*.xml
+id_rsa_bb
+
+# log files
+*.log
+*.mod
+*.sum
+
+# Folders
+bin/
+assets/
+temp/
