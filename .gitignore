@@ -2,7 +2,6 @@
 *.exe
 *.exe~
 *.conf
-*.example
 *.env
 *.rar
 *.zip
@@ -28,5 +27,4 @@ id_rsa_bb
 
 # Folders
 bin/
-assets/
 temp/

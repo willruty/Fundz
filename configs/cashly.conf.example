@@ -1,0 +1,9 @@
+[service]
+port = 57005
+
+[database]
+port = 5432
+host = host
+user = user
+password = password
+dbname = dbname
