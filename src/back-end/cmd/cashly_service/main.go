@@ -4,9 +4,9 @@ import (
 	"back-end/internal/config"
 	"back-end/internal/model"
 	"back-end/internal/router"
+	"back-end/internal/util"
 	"fmt"
 	"strconv"
-
 )
 
 func main() {
@@ -20,6 +20,9 @@ func main() {
 	model.DatabaseConnect()
 	port := strconv.Itoa(config.Env.Service.Port)
 
+	util.PrintBanner()
+
 	r := router.SetupRouter()
 	r.Run(":" + port)
+
 }

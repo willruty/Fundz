@@ -2,8 +2,6 @@ package config
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
 
 	"gopkg.in/ini.v1"
 )
@@ -29,13 +27,13 @@ var Env ConfigEnv
 
 func Load() error {
 
-	exe, err := os.Executable()
-	if err != nil {
-		panic(err)
-	}
-	exPath := filepath.Dir(exe)
+	// exe, err := os.Executable()
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// exPath := filepath.Dir(exe)
 
-	fileConf := filepath.Join(exPath, "maxus.conf")
+	fileConf := "D:/Cashly-BudgetFlow/Cashly/configs/cashly.conf"
 	cfg, err := ini.Load(fileConf)
 
 	if err != nil {

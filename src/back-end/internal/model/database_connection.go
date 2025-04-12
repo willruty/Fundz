@@ -6,6 +6,7 @@ import (
 	"net/url"
 
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 var (
@@ -35,10 +36,13 @@ func DatabaseConnect() {
 	database, err := gorm.Open("postgres", dsn.String())
 
 	if err != nil {
-		panic("Failed to connect to database!")
+		panic(err.Error())
 	}
 
 	DB = database
 	DB.SingularTable(true)
+
+	DB.AutoMigrate(&User{}, &Category{}, &Transaction{}, &Goal{})
+	// DB.Debug()
 
 }

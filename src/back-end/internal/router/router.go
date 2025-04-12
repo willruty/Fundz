@@ -42,32 +42,37 @@ func SetupRouter() *gin.Engine {
 	v1 := route.Group("/cashly")
 
 	{
+		// === Health ===
+		v1.GET("/health", controller.Health)
+
 		// === UserAccount ===
-		// v1.POST("/register", controller.authController)
-		// v1.POST("/login", controller.authController)
-		// v1.GET("/user/me", controller.userController)
-
-		// v1.GET("/transaction", controller.GetTransactions)
-		// v1.POST("/transaction", controller.PostTransaction)
-		// v1.PUT("/transaction/:id", controller.UpdateTransactionById)
-		// v1.DELETE("/transaction/:id", controller.DeleteTransactionById)
-
-		// v1.GET("/categories", controller.GetCategories)
-		// v1.POST("/categories", controller.PostCategorie)
-		// v1.PUT("/categories/:id", controller.UpdateCategorieById)
-		// v1.DELETE("/categories/:id", controller.DeleteCategorieById)
-
-		// v1.GET("/goal", controller.GetGoals)
-		// v1.POST("/goal", controller.PostGoal)
-		// v1.PUT("/goal/:id", controller.UpdateGoalById)
-		// v1.DELETE("/goal/:id", controller.DeleteGoalById)
-
-		v1.GET("/user", controller.GetUsers)
-		v1.GET("/user", controller.GetUserById)
 		v1.POST("/register", controller.CreateUser)
-		v1.PUT("/user/:id", controller.UpdateUserById)
-		v1.PATCH("/user/status/:id", controller.UpdatePasswordById)
-		v1.DELETE("/user/:id", controller.DeleteUserById)
+		v1.POST("/login", controller.LoginUserAccount)
+		v1.GET("/user/me", controller.GetDataByJWT)
+
+		// === Transaction ===
+		v1.GET("/user/transactions/:id", controller.GetUserTransactionsByID)
+		v1.GET("/transaction/:id", controller.GetTransactionById)
+
+		v1.POST("/transaction", controller.CreateTransaction)
+		v1.PUT("/transaction/:id", controller.UpdateTransactionById)
+		v1.DELETE("/transaction/:id", controller.DeleteTransactionById)
+
+		// === Categories ===
+		v1.GET("/user/category/:id", controller.GetUserCategoriesByID)
+		v1.GET("/category/:id", controller.GetCategoryById)
+
+		v1.POST("/category", controller.CreateCategory)
+		v1.PUT("/category/:id", controller.UpdateCategoryById)
+		v1.DELETE("/category/:id", controller.DeleteCategoryById)
+
+		// === Goal ===
+		v1.GET("/user/goal/:id", controller.GetUserGoalsById)
+		v1.GET("/goal/:id", controller.GetGoalById)
+
+		v1.POST("/goal", controller.CreateGoal)
+		v1.PUT("/goal/:id", controller.UpdateGoalById)
+		v1.DELETE("/goal/:id", controller.DeleteGoalById)
 
 	}
 

@@ -8,11 +8,15 @@ import (
 )
 
 type Transaction struct {
-	Transaction_id          uuid.UUID       `gorm:"type:uuid;default:gen_random_uuid();primaryKey" json:"transaction_id"`
-	User_id                 uuid.UUID       `gorm:"type:uuid; foreingKey" json:"user_id"`
-	Category_id             uuid.UUID       `gorm:"type:uuid; foreingKey" json:"category_id"`
-	Transaction_type        string          `gorm:"type:varchar(7); not null" json:"transaction_type"`
-	Transaction_amount      decimal.Decimal `gorm:"type:numeric(12,4)" json:"transaction_amount"`
-	Transaction_description string          `gorm:"type:varchar(100); not null" json:"transaction_description"`
-	Transaction_date        time.Time       `gorm:"type:timestamp(0)" json:"transaction_date"`
+	TransactionID uuid.UUID `gorm:"type:uuid;default:gen_random_uuid();primaryKey" json:"transaction_id"`
+	UserID        uuid.UUID `gorm:"type:uuid; not null" json:"user_id"`
+	User          User      `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"-"`
+
+	CategoryID uuid.UUID `gorm:"type:uuid" json:"category_id"`
+	Category   Category  `gorm:"foreignKey:CategoryID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"-"`
+
+	TransactionType        string          `gorm:"type:varchar(7);not null" json:"transaction_type"`
+	TransactionAmount      decimal.Decimal `gorm:"type:numeric(12,2); not null" json:"transaction_amount"`
+	TransactionDescription string          `gorm:"type:varchar(100);not null" json:"transaction_description"`
+	TransactionDate        time.Time       `gorm:"type:timestamp(0); not null" json:"transaction_date"`
 }

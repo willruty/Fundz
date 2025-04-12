@@ -1,15 +1,31 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+// import "github.com/gin-gonic/gin"
 
-func GetUsers(c *gin.Context)           {}
+import (
+	"back-end/internal/model"
+	"net/http"
 
-func GetUserById(c *gin.Context)        {}
+	"github.com/gin-gonic/gin"
+)
 
-func CreateUser(c *gin.Context)         {}
+func CreateUser(c *gin.Context) {
 
-func UpdateUserById(c *gin.Context)     {}
+	var usuario model.User
 
-func UpdatePasswordById(c *gin.Context) {}
+	if err := c.ShouldBindJSON(&usuario); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
+		return
+	}
 
-func DeleteUserById(c *gin.Context)     {}
+	if err := model.DB.Create(&usuario).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Erro ao criar conta > " + err.Error()})
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": "Conta criada com sucesso!"})
+
+}
+
+func LoginUserAccount(c *gin.Context) {}
+
+func GetDataByJWT(c *gin.Context) {}
