@@ -1,0 +1,114 @@
+body {
+    background-color: var(--background-black);
+    font-family: "Roboto Flex", sans-serif;
+}
+
+header {
+    background-color: var(--contrast-yellow);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    & div#logo {
+        height: 50px;
+        margin-left: 40px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+
+        & i {
+            font-size: 2em;
+        }
+
+        & #titulo-logo {
+            display: flex;
+            align-items: center;
+
+            & p {
+                margin-bottom: 0;
+                margin-left: 5px;
+                color: var(--Headline);
+                font-size: 2em;
+                font-weight: 600;
+            }
+        }
+    }
+
+    & div#links-navbar {
+        margin-right: 40px;
+        padding: 5px;
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+
+        & button {
+            border-radius: 10px;
+            border: none;
+            color: var(--Button-text);
+            padding: 5px 15px;
+            font-weight: 400;
+            font-size: 1.3em;
+
+            &#botao-login {
+                background: none;
+                color: var(--background-black);
+            }
+
+            &#botao-cadastro {
+                background-color: rgba(41, 41, 41, .3);
+            }
+        }
+    }
+}
+
+div.container {
+
+    & #banner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+        & #titulo {
+            margin-top: 90px;
+            grid-column: 1;
+            width: 90%;
+
+            & h1 {
+                color: var(--Headline);
+                font-size: 3.5em;
+            }
+
+            & p {
+                color: var(--Paragraph);
+
+                &#subtitulo {
+                    color: var(--contrast-yellow);
+                    margin-bottom: 30px;
+                }
+            }
+
+            & button#saiba-mais {
+                color: var(--Button-text);
+                margin-top: 30px;
+                font-weight: 600;
+                background-color: var(--contrast-yellow);
+            }
+        }
+
+        & #imagem-banner {
+            margin-top: 40px;
+            grid-column: 2;
+            display: flex;
+            align-items: center;
+            
+            height: 500px;
+            overflow-y: hidden;
+            
+
+            & img {
+                margin-top: 150px;
+                width: 80%;
+                margin-left: 100px;
+            }
+        }
+    }
+}
