@@ -48,7 +48,7 @@ func SetupRouter() *gin.Engine {
 		// === UserAccount ===
 		v1.POST("/register", controller.CreateUser)
 		v1.POST("/login", controller.LoginUserAccount)
-		v1.GET("/user/me", controller.GetDataByJWT)
+		v1.GET("/user/getdata", controller.GetDataByJWT)
 
 		// === Transaction ===
 		v1.GET("/user/transactions/:id", controller.GetUserTransactionsByID)

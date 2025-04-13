@@ -42,7 +42,7 @@ func DatabaseConnect() {
 	DB = database
 	DB.SingularTable(true)
 
-	DB.AutoMigrate(&User{}, &Category{}, &Transaction{}, &Goal{})
+	DB.AutoMigrate(&User{})
 	// DB.Debug()
 
 }

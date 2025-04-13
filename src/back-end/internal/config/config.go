@@ -16,6 +16,7 @@ type database struct {
 	DatabaseName string
 	User         string
 	Password     string
+	JwtSecret    []byte
 }
 
 type ConfigEnv struct {
@@ -52,6 +53,7 @@ func Load() error {
 	env.Database.User = cfg.Section("database").Key("user").String()
 	env.Database.Password = cfg.Section("database").Key("password").String()
 	env.Database.DatabaseName = cfg.Section("database").Key("dbname").String()
+	env.Database.JwtSecret = []byte(cfg.Section("database").Key("jwtSecret").String())
 
 	Env = env
 
