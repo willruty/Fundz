@@ -64,6 +64,8 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
+	fmt.Println("Recebido:", usuario.UserName, usuario.UserEmail, usuario.UserPassword)
+
 	c.JSON(http.StatusOK, gin.H{"data": "Conta criada com sucesso!"})
 
 }
@@ -110,7 +112,7 @@ func GetDataByJWT(c *gin.Context) {
 	}
 
 	tokenString := strings.TrimPrefix(authHeader, "Bearer ")
-	if tokenString == authHeader {
+	if tokenString == "" || tokenString == authHeader {
 		c.JSON(http.StatusUnauthorized, gin.H{"erro": "Formato do token inválido"})
 		return
 	}
@@ -153,4 +155,50 @@ func GetDataByJWT(c *gin.Context) {
 		"user_email": usuario.UserEmail,
 	})
 
+}
+
+func Dashboard(c *gin.Context) {
+	authHeader := c.GetHeader("Authorization")
+	if authHeader == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"erro": "token não fornecido"})
+		return
+	}
+
+	tokenString := strings.TrimPrefix(authHeader, "Bearer ")
+	if tokenString == authHeader {
+		c.JSON(http.StatusUnauthorized, gin.H{"erro": "formato do token inválido"})
+		return
+	}
+
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("método de assinatura inesperado: %v", token.Header["alg"])
+		}
+		return config.Env.Database.JwtSecret, nil
+	})
+
+	if err != nil || !token.Valid {
+		c.JSON(http.StatusUnauthorized, gin.H{"erro": "token inválido"})
+		return
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok || !token.Valid {
+		c.JSON(http.StatusUnauthorized, gin.H{"erro": "token mal formatado"})
+		return
+	}
+
+	userID := claims["user_id"].(string)
+
+	var usuario model.User
+	if err := model.DB.First(&usuario, "user_id = ?", userID).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"erro": "usuário não encontrado"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"mensagem":   "Bem-vindo à plataforma!",
+		"user_name":  usuario.UserName,
+		"user_email": usuario.UserEmail,
+	})
 }

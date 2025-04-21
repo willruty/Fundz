@@ -1,0 +1,136 @@
+body {
+    background-color: #0f0e17;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+div#go-back {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+
+    & span.arrow {
+        color: #FFC506;
+        font-size: 1.5em;
+        margin-top: -20px;
+        text-decoration: none;
+    }
+
+    & a {
+        color: #FFC506;
+        margin-left: 10px;
+        font-size: 1.6em;
+        text-decoration: none;
+    }
+}
+
+#nomeContainer {
+    display: none;
+}
+
+#formContainer.signup #nomeContainer {
+    display: block;
+}
+
+#formContainer {
+    background-color: #F4F4F4;
+    width: 40%;
+    padding: 40px;
+    border-radius: 20px;
+    margin: 60px auto;
+
+    & h1 {
+        font-size: 2em;
+        text-align: center;
+        padding-bottom: 5px;
+    }
+
+    & form#userForm {
+        display: flex;
+        flex-direction: column;
+
+        & input {
+            margin: 15px 0px;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+        }
+
+        & button#submitBtn {
+            margin-top: 15px;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 1em;
+            background-color: #FFC506;
+            border: none;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+    }
+
+    & div#alternate {
+        text-align: center;
+        margin-top: 20px;
+
+        & #showLogin,
+        & #showSignup {
+            border: none;
+            color: rgba(0, 0, 0, .5);
+            background: none;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) {
+    #formContainer {
+        width: 60%;
+    }
+}
+
+@media (max-width: 768px) {
+    #formContainer {
+        width: 80%;
+        padding: 30px;
+    }
+
+    div#go-back {
+        flex-direction: column;
+        align-items: flex-start;
+
+        & a,
+        & span.arrow a {
+            margin-top: 10px;
+            font-size: 1.4em;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    #formContainer {
+        width: 90%;
+        padding: 20px;
+    }
+
+    div#go-back {
+        padding: 10px;
+
+        & a,
+        & span.arrow a {
+            font-size: 1.2em;
+        }
+    }
+
+    #formContainer h1 {
+        font-size: 1.5em;
+    }
+
+    #formContainer input,
+    #formContainer button#submitBtn {
+        font-size: 0.9em;
+    }
+}

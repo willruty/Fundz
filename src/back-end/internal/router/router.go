@@ -1,6 +1,7 @@
 package router
 
 import (
+	"net/http"
 	"os"
 	"strings"
 
@@ -39,7 +40,22 @@ func SetupRouter() *gin.Engine {
 
 	route.Use(cors.New(configRouter()))
 
-	v1 := route.Group("/cashly")
+	v1 := route.Group("/Fundz")
+
+	route.Static("/assets", "../../../front-end/assets")
+	route.LoadHTMLGlob("../../../front-end/pages/*.html")
+
+	route.GET("/Fundz", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", nil)
+	})
+
+	route.GET("/Fundz/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", nil)
+	})
+
+	route.GET("/dashboard", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "dashboard.html", nil)
+	})
 
 	{
 		// === Health ===
@@ -49,6 +65,7 @@ func SetupRouter() *gin.Engine {
 		v1.POST("/register", controller.CreateUser)
 		v1.POST("/login", controller.LoginUserAccount)
 		v1.GET("/user/getdata", controller.GetDataByJWT)
+		v1.GET("/dashboard", controller.Dashboard)
 
 		// === Transaction ===
 		v1.GET("/user/transactions/:id", controller.GetUserTransactionsByID)

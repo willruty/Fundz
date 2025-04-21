@@ -34,7 +34,7 @@ func Load() error {
 	// }
 	// exPath := filepath.Dir(exe)
 
-	fileConf := "D:/Cashly-BudgetFlow/Cashly/configs/cashly.conf"
+	fileConf := "D:/Cashly-BudgetFlow/Fundz/configs/fundz.conf"
 	cfg, err := ini.Load(fileConf)
 
 	if err != nil {

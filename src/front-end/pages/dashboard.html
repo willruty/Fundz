@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Fundz</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+
+<body>
+    <div id="mensagem"></div>
+    <h1>Área restrita</h1>
+    <p id="nome-usuario"></p>
+    <button onclick="logout()">Sair</button>
+
+    <script>
+        async function buscarDadosUsuario() {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                document.getElementById("mensagem").textContent = "Token não encontrado. Faça login.";
+                return;
+            }
+
+            try {
+                const res = await fetch("/Fundz/dashboard", {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    document.getElementById("mensagem").textContent = "Você está dentro da plataforma! Bem-vindo, " + data.user_name;
+                    document.getElementById("nome-usuario").textContent = "Olá, " + data.user_name + "!";
+                } else {
+                    document.getElementById("mensagem").textContent = data.erro || "Erro ao carregar dados.";
+                }
+            } catch (err) {
+                console.error("Erro ao buscar dados:", err);
+                document.getElementById("mensagem").textContent = "Erro de conexão.";
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "/Fundz/login";
+        }
+
+
+        window.onload = buscarDadosUsuario;
+    </script>
+</body>
+
+</html>
