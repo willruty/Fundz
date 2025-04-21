@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -9,67 +10,281 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/js/index.js">
 
-    <title>Cashly | Home</title>
+    <title>Fundz | Home</title>
 </head>
 
 <body>
-
     <header>
-        <div id="logo">
-            <i class="bi bi-coin"></i>
+        <div id="logo" class="d-flex align-items-center">
+            <img id="img-logo" src="../assets/img/logo-yellow.png" alt="logo">
             <div id="titulo-logo">
-                <p>Cashly</p>
+                <p>Fundz</p>
             </div>
         </div>
-        <div id="links-navbar">
+        <div id="links-navbar" class="d-flex gap-3">
             <button id="botao-login">Log in</button>
             <button id="botao-cadastro">Sign Up</button>
         </div>
     </header>
 
-    <div class="container">
-        <div id="banner">
-            <div id="titulo">
+    <section id="banner">
+        <div id="titulo">
+            <h1>Domine o caos financeiro, acadêmico e social</h1>
+            <h2>ou pelo menos finja que sim</h2>
+            <p id="subtitulo">"Para quem já aprendeu que equilíbrio é só uma teoria que não funciona na prática."</p>
+            <p>
+                Conheça o Fundz, um projeto open-source feito sob medida para universitários tentando equilibrar
+                boletos, boletins e a balada. Minimalista e fácil de usar, a interface finge que está tudo sob controle
+                — igualzinho você no fim do semestre.
+            </p>
+            <button class="btn" id="saiba-mais">Saiba mais</button>
+        </div>
+        <div id="imagem-banner">
+            <img src="../assets/img/undraw_predictive-analytics_6vi1.svg" alt="Imagem ilustrativa">
+        </div>
+    </section>
 
-                <h1>Controle suas finanças <br>como nunca antes</h1>
-                <p id="subtitulo">Sabemos que sobra mês no fim do dinheiro — estamos aqui por isso</p>
-                <p>
-                    Conheça o Cashly, um projeto open-source pensado para universitários com grandes metas e pequenos
-                    orçamentos.
-                    Minimalista e fácil de usar, a interface tenta trazer a sensação de que as finanças estão sob controle.
-                </p>
-                <button class="btn btn-warning" id="saiba-mais">Saiba mais</button>
+    <section id="beneficios">
+        <h1>Benefícios</h1>
+
+        <div id="cards-beneficios">
+            <div class="card-beneficio">
+                <div class="card-logo"><i class="bi bi-currency-exchange"></i></div>
+                <div class="card-title">Gerencie suas finanças sem precisar recorrer ao mercado negro.</div>
+            </div>
+            <div class="card-beneficio">
+                <div class="card-logo"><i class="bi bi-mortarboard-fill"></i></div>
+                <div class="card-title">Não apenas organize suas notas, mas veja se você realmente consegue melhorar!
+                </div>
+            </div>
+            <div class="card-beneficio">
+                <div class="card-logo"><i class="bi bi-suit-spade-fill"></i></div>
+                <div class="card-title">Guarde os registros de quem é seu pato na facul.</div>
+            </div>
+            <div class="card-beneficio">
+                <div class="card-logo"><i class="bi bi-eye"></i></div>
+                <div class="card-title">Não precisa de mais um app confuso, só o básico e direto ao ponto.</div>
+            </div>
+            <div class="card-beneficio">
+                <div class="card-logo"><i class="bi bi-ui-checks-grid"></i></div>
+                <div class="card-title">Tudo sob controle, exceto aqueles momentos depois de "Só se vive uma vez!"</div>
+            </div>
+            <div class="card-beneficio">
+                <div class="card-logo"><i class="bi bi-door-open"></i></div>
+                <div class="card-title">Se o site travar, ao menos você pode se gabar da sua contribuição em um projeto
+                    Open-source.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funcionalidades">
+        <h1>Funcionalidades</h1>
+
+        <div id="introducao">
+            <p>
+                O Fundz foi desenvolvido para proporcionar uma gestão simples e eficiente das suas atividades
+                universitárias. Organize suas finanças, notas e momentos de diversão de maneira prática.
+                Contribua com suas ideias e sugestões para tornar a plataforma ainda mais útil para todos.
+            </p>
+        </div>
+
+        <div id="cards-funcionalidades">
+            <div class="card-funcionalidade">
+                <div class="card-logo"><i class="bi bi-graph-up-arrow"></i></div>
+                <div class="card-description">Acompanhamento detalhado de entradas, saídas e orçamento mensal com
+                    categorias
+                    personalizáveis.</div>
             </div>
 
-            <div id="imagem-banner">
-                <img src="../assets/img/undraw_predictive-analytics_6vi1.svg" alt="">
+            <div class="card-funcionalidade">
+                <div class="card-logo"><i class="bi bi-pencil"></i></div>
+                <div class="card-description">Registro e monitoramento de desempenho acadêmico com gráficos e alertas de
+                    metas.</div>
+            </div>
+
+            <div class="card-funcionalidade">
+                <div class="card-logo"><i class="bi bi-table"></i></div>
+                <div class="card-description">Criação de calendários para visualização de prazos, tarefas e eventos
+                    importantes.</div>
+            </div>
+
+            <div class="card-funcionalidade">
+                <div class="card-logo"><i class="bi bi-diagram-3"></i></div>
+                <div class="card-description">Armazenamento e análise dos resultados dos jogos de truco, sinuca e mais,
+                    com
+                    estatísticas e rankings.</div>
+            </div>
+
+            <div class="card-funcionalidade">
+                <div class="card-logo"><i class="bi bi-stars"></i></div>
+                <div class="card-description">Personalize a plataforma para que ela mostre o que você realmente
+                    precisa, do jeito que você precisa.</div>
+            </div>
+
+            <div class="card-funcionalidade">
+                <div class="card-logo"><i class="bi bi-github"></i></div>
+                <div class="card-description">Abertura do código-fonte para que a comunidade possa revisar, melhorar e
+                    contribuir para o desenvolvimento da plataforma.</div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="graph-section">
+        <h2>Use gráficos simples</h2>
+        <div class="graph-container">
+
+            <!-- Gráfico de linha -->
+            <div class="graph-card line-graph">
+                <p class="graph-description">Evolução financeira</p>
+                <svg viewBox="0 0 200 100">
+                    <polyline fill="none" stroke="#facc15" stroke-width="3"
+                        points="0,80 40,60 80,70 120,40 160,50 200,30" />
+                </svg>
+            </div>
+
+            <!-- Gráfico de barras -->
+            <div class="graph-card">
+                <p class="graph-description">Gastos por categoria</p>
+                <div class="bar-graph">
+                    <div class="bar" style="height: 80%;"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="bar-labels">
+                    <span>Comida</span>
+                    <span>Transp.</span>
+                    <span>Lazer</span>
+                    <span>Outros</span>
+                </div>
+            </div>
+
+            <!-- Tabela -->
+            <div class="graph-card table-wrapper">
+                <p class="graph-description">Resumo semanal</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Gasto</th>
+                            <th>Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Segunda</td>
+                            <td>R$ 32,50</td>
+                            <td>R$ 217,50</td>
+                        </tr>
+                        <tr>
+                            <td>Terça</td>
+                            <td>R$ 15,00</td>
+                            <td>R$ 202,50</td>
+                        </tr>
+                        <tr>
+                            <td>Quarta</td>
+                            <td>R$ 0,00</td>
+                            <td>R$ 202,50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="steps-section">
+        <h2 class="steps-title">Primeiros Passos</h2>
+
+        <div class="steps-container">
+
+            <!-- Passo 1 - Cadastro -->
+            <div class="step-card">
+                <p class="step-description">Desbloqueie o potencial do Fundz com um simples cadastro</p>
+                <img src="../assets/img/undraw_young-man-avatar_wgbd.svg" alt="">
+            </div>
+
+            <!-- Flecha entre os passos -->
+            <div class="arrow-container">
+                <span class="arrow">&#8594;</span>
+            </div>
+
+            <!-- Passo 2 - Inserção de Dados -->
+            <div class="step-card">
+                <p class="step-description">
+                    Conte-nos suas preferências, e nós vamos te ajudar a otimizar sua vida
+                    universitária.</p>
+                <img src="../assets/img/undraw_design-feedback_kzg9.svg" alt="">
+            </div>
+
+            <!-- Flecha entre os passos -->
+            <div class="arrow-container">
+                <span class="arrow">&#8594;</span>
+            </div>
+
+            <!-- Passo 3 - Utilização -->
+            <div class="step-card">
+                <p class="step-description">Com tudo configurado, é hora de explorar e tirar o máximo proveito!</p>
+                <img src="../assets/img/undraw_pie-chart_eo9h.svg" alt="">
             </div>
         </div>
 
+        <p class="simple-text">Simples, Rápido e prático</p>
+    </section>
+
+    <section class="cta-section">
+        <!-- Elementos decorativos -->
+        <img src="../assets/img/moeda.svg" class="decor decor-coin" alt="">
+        <img src="../assets/img/carta.svg" class="decor decor-card" alt="">
+        <img src="../assets/img/linha-grafico.svg" class="decor decor-graph" alt="">
+
+        <!-- Conteúdo principal -->
+        <div class="cta-content">
+            <h2 class="cta-text">Pronto para transformar sua vida universitária?</h2>
+            <hr class="cta-divider" />
+            <a href="#cadastro" class="cta-button">Cadastre-se agora</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Lado esquerdo: Logo e ícones -->
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="../assets/img/logo-yellow.png" alt="Logo Fundz">
+                    <span class="logo-text">Fundz</span>
+                </div>
+                <div class="footer-icons">
+                    <a href="https://github.com/" target="_blank" class="footer-icon">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/" target="_blank" class="footer-icon">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="mailto:email@exemplo.com" class="footer-icon">
+                        <i class="bi bi-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Lado direito: Frase de efeito -->
+            <div class="footer-right">
+                <p class="footer-slogan">“Fundz. Onde o boletim encontra o boleto.”</p>
+            </div>
+        </div>
+
+        <!-- Direitos autorais -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Fundz - Todos os direitos reservados. <br>Feito por William R. Macedo</p>
+        </div>
+    </footer>
 
 
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-    </div>
 
 </body>
 
