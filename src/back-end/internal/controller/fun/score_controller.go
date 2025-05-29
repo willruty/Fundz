@@ -12,31 +12,31 @@ import (
 // -------
 // Create
 // -------
-func CreateUser(c *gin.Context) {
+func CreateScore(c *gin.Context) {
 
-	var user entity.User
+	var score entity.Score
 
-	if err := c.ShouldBindJSON(&user); err != nil {
+	if err := c.ShouldBindJSON(&score); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.CreateUser(user); err != nil {
+	if err := dao.CreateScore(score); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"data": user,
+		"data": score,
 	})
 }
 
 // -------
 // GetAll
 // -------
-func GetAllUsers(c *gin.Context) {
+func GetAllScores(c *gin.Context) {
 
-	users, rowsAffected, err := dao.FindAllUsers()
+	scores, rowsAffected, err := dao.FindAllScores()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -45,18 +45,18 @@ func GetAllUsers(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK,
 		gin.H{
-			"results":      users,
+			"results":      scores,
 			"RowsAffected": rowsAffected,
-			"RecordCount":  len(users),
+			"RecordCount":  len(scores),
 		})
 }
 
 // -------
 // GetById
 // -------
-func GetUserById(c *gin.Context) {
+func GetScoreById(c *gin.Context) {
 
-	result, err := dao.FindUserById(c.Param("id"))
+	result, err := dao.FindScoreById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -68,22 +68,22 @@ func GetUserById(c *gin.Context) {
 // -------
 // UpdateById
 // -------
-func UpdateUserById(c *gin.Context) {
+func UpdateScoreById(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if _, err := dao.FindUserById(id); err != nil {
+	if _, err := dao.FindScoreById(id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	var input entity.User
+	var input entity.Score
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdateUserById(input, id); err != nil {
+	if err := dao.UpdateScoreById(input, id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -94,16 +94,16 @@ func UpdateUserById(c *gin.Context) {
 // -------
 // DeleteById
 // -------
-func DeleteUserById(c *gin.Context) {
+func DeleteScoreById(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if _, err := dao.FindUserById(id); err != nil {
+	if _, err := dao.FindScoreById(id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.DeleteUserById(id); err != nil {
+	if err := dao.DeleteScoreById(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to delete record " + err.Error()})
 		return
 	}

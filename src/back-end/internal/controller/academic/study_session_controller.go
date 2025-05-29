@@ -12,31 +12,31 @@ import (
 // -------
 // Create
 // -------
-func CreateUser(c *gin.Context) {
+func CreateStudy_session(c *gin.Context) {
 
-	var user entity.User
+	var study_session entity.Study_session
 
-	if err := c.ShouldBindJSON(&user); err != nil {
+	if err := c.ShouldBindJSON(&study_session); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.CreateUser(user); err != nil {
+	if err := dao.CreateStudy_session(study_session); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"data": user,
+		"data": study_session,
 	})
 }
 
 // -------
 // GetAll
 // -------
-func GetAllUsers(c *gin.Context) {
+func GetAllStudy_sessions(c *gin.Context) {
 
-	users, rowsAffected, err := dao.FindAllUsers()
+	study_sessions, rowsAffected, err := dao.FindAllStudy_sessions()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -45,18 +45,18 @@ func GetAllUsers(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK,
 		gin.H{
-			"results":      users,
+			"results":      study_sessions,
 			"RowsAffected": rowsAffected,
-			"RecordCount":  len(users),
+			"RecordCount":  len(study_sessions),
 		})
 }
 
 // -------
 // GetById
 // -------
-func GetUserById(c *gin.Context) {
+func GetStudy_sessionById(c *gin.Context) {
 
-	result, err := dao.FindUserById(c.Param("id"))
+	result, err := dao.FindStudy_sessionById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -68,22 +68,22 @@ func GetUserById(c *gin.Context) {
 // -------
 // UpdateById
 // -------
-func UpdateUserById(c *gin.Context) {
+func UpdateStudy_sessionById(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if _, err := dao.FindUserById(id); err != nil {
+	if _, err := dao.FindStudy_sessionById(id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	var input entity.User
+	var input entity.Study_session
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdateUserById(input, id); err != nil {
+	if err := dao.UpdateStudy_sessionById(input, id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -94,16 +94,16 @@ func UpdateUserById(c *gin.Context) {
 // -------
 // DeleteById
 // -------
-func DeleteUserById(c *gin.Context) {
+func DeleteStudy_sessionById(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if _, err := dao.FindUserById(id); err != nil {
+	if _, err := dao.FindStudy_sessionById(id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.DeleteUserById(id); err != nil {
+	if err := dao.DeleteStudy_sessionById(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to delete record " + err.Error()})
 		return
 	}
