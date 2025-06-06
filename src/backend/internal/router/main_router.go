@@ -1,12 +1,9 @@
 package router
 
 import (
-	"net/http"
+	"fundz/internal/controller"
 	"os"
 	"strings"
-
-	controller "fundz/internal/controller/finance"
-	user "fundz/internal/controller"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -41,52 +38,24 @@ func SetupRouter() *gin.Engine {
 
 	route.Use(cors.New(configRouter()))
 
-	route.Static("/assets", "../../../front-end/assets")
-	route.LoadHTMLGlob("../../../front-end/pages/*.html")
-
-	route.GET("/Fundz", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nil)
-	})
-
-	route.GET("/Fundz/login", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "login.html", nil)
-	})
-
-	route.GET("/dashboard", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "dashboard.html", nil)
-	})
+	SetupFinanceRouter()
 
 	v1 := route.Group("/Fundz")
 	// vao ser 41 novos endpoints -> criar mais grupos para cada endpoint
 
 	{
 
+		user := v1.Group("/user")
 		// === User ===
-		v1.POST("/register", user.CreateUser)
+		user.POST("/register", controller.CreateUser)
+		user.GET("/", controller.GetAllUsers)
+		user.GET("/:id", controller.GetUserById)
+		user.PUT("/", controller.UpdateUserById)
+		user.DELETE("/:id", controller.DeleteUserById)
+
 		// v1.POST("/login", user.LoginUserAccount)
 		// v1.GET("/user/getdata", user.GetDataByJWT)
 		// v1.GET("/dashboard", user.Dashboard)
-
-		// === Transaction ===
-		// v1.GET("/transactions/:id", controller.GetUserTransactionsByID)
-		v1.GET("/transaction/:id", controller.GetTransactionById)
-		v1.POST("/transaction", controller.CreateTransaction)
-		v1.PUT("/transaction/:id", controller.UpdateTransactionById)
-		v1.DELETE("/transaction/:id", controller.DeleteTransactionById)
-
-		// === Categories ===
-		// v1.GET("/user/category/:id", controller.GetUserCategoriesByID)
-		v1.GET("/category/:id", controller.GetCategoryById)
-		v1.POST("/category", controller.CreateCategory)
-		v1.PUT("/category/:id", controller.UpdateCategoryById)
-		v1.DELETE("/category/:id", controller.DeleteCategoryById)
-
-		// === Goal ===
-		// v1.GET("/user/goal/:id", controller.GetUserGoalsById)
-		v1.GET("/goal/:id", controller.GetGoalById)
-		v1.POST("/goal", controller.CreateGoal)
-		v1.PUT("/goal/:id", controller.UpdateGoalById)
-		v1.DELETE("/goal/:id", controller.DeleteGoalById)
 
 	}
 

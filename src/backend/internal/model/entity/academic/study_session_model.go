@@ -2,12 +2,10 @@ package entity
 
 import (
 	"time"
-
-	"github.com/google/uuid"
 )
 
 type Study_session struct {
-	Ss_id uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey;not null" json:"ss_id" binding:"required"`
+	Ss_id string `gorm:"type:uuid;default:uuid_generate_v4();primaryKey;not null" json:"ss_id" binding:"required"`
 
 	// user_id
 	// subject_id

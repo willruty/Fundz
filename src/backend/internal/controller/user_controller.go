@@ -69,20 +69,13 @@ func GetUserById(c *gin.Context) {
 // -------
 func UpdateUserById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindUserById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
 	var input entity.User
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdateUserById(input, id); err != nil {
+	if err := dao.UpdateUserById(input, input.User_id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -95,14 +88,12 @@ func UpdateUserById(c *gin.Context) {
 // -------
 func DeleteUserById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindUserById(id); err != nil {
+	if _, err := dao.FindUserById(c.Param("id")); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.DeleteUserById(id); err != nil {
+	if err := dao.DeleteUserById(c.Param("id")); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to delete record " + err.Error()})
 		return
 	}

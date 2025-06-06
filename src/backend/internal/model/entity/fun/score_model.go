@@ -2,12 +2,10 @@ package entity
 
 import (
 	"time"
-
-	"github.com/google/uuid"
 )
 
 type Score struct {
-	Score_id uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey;not null" json:"score_id" binding:"required"`
+	Score_id string `gorm:"type:uuid;default:uuid_generate_v4();primaryKey;not null" json:"score_id" binding:"required"`
 
 	// game_id
 	// player_id

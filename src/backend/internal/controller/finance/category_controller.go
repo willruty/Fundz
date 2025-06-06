@@ -33,7 +33,7 @@ func CreateCategory(c *gin.Context) {
 // -------
 // GetAll
 // -------
-func GetAllCategorys(c *gin.Context) {
+func GetAllCategories(c *gin.Context) {
 
 	categorys, rowsAffected, err := dao.FindAllCategorys()
 

@@ -2,13 +2,11 @@ package entity
 
 import (
 	"time"
-
-	"github.com/google/uuid"
 )
 
 type Subject struct {
-	Subject_id   uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey;not null" json:"subject_id" binding:"required"`
-	Subject_name string    `gorm:"type:varchar(250);not null" json:"subject_name" binding:"required"`
+	Subject_id   string `gorm:"type:uuid;default:uuid_generate_v4();primaryKey;not null" json:"subject_id" binding:"required"`
+	Subject_name string `gorm:"type:varchar(250);not null" json:"subject_name" binding:"required"`
 
 	// user_id
 
