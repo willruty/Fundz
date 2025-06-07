@@ -41,18 +41,20 @@ func SetupRouter() *gin.Engine {
 	SetupFinanceRouter()
 
 	v1 := route.Group("/Fundz")
-	// vao ser 41 novos endpoints -> criar mais grupos para cada endpoint
 
 	{
 
 		user := v1.Group("/user")
-		// === User ===
-		user.POST("/register", controller.CreateUser)
-		user.GET("/", controller.GetAllUsers)
-		user.GET("/:id", controller.GetUserById)
-		user.PUT("/", controller.UpdateUserById)
-		user.DELETE("/:id", controller.DeleteUserById)
+		{
+			// === User CRUD ===
+			user.POST("/register", controller.CreateUser)
+			user.GET("/", controller.GetAllUsers)
+			user.GET("/:id", controller.GetUserById)
+			user.PUT("/", controller.UpdateUserById)
+			user.DELETE("/:id", controller.DeleteUserById)
+		}
 
+		
 		// v1.POST("/login", user.LoginUserAccount)
 		// v1.GET("/user/getdata", user.GetDataByJWT)
 		// v1.GET("/dashboard", user.Dashboard)
