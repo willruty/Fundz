@@ -1,0 +1,46 @@
+div#about {
+    margin-top: 60px;
+    text-align: center;
+    align-content: center;
+    padding: 5.5rem 0;
+
+    & h2 {
+        color: var(--text-color);
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    & p {
+        color: var(--text-color-secondary);
+        margin: 30px auto 40px auto;
+        width: 80%;
+    }
+
+    & ul {
+        display: flex;
+        justify-content: space-evenly;
+        list-style: none;
+        padding: 0;
+        margin: 30px auto;
+        text-align: left;
+
+        & li.about-card {
+            background-color: transparent;
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+            padding: 20px;
+            width: 30%;
+            border: 3px solid #77777746;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+
+            & h3 {
+                color: var(--text-color);
+                font-size: 1.2rem;
+            }
+
+            & p {
+                width: 90%;                
+            }
+        }
+    }
+}
