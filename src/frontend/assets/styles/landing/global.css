@@ -46,7 +46,7 @@ body {
 }
 
 .container {
-  margin: 120px auto;
+  margin: 120px auto 0 auto;
   text-align: center;
   /* border: 1px solid red; */
 }

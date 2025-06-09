@@ -6,6 +6,7 @@ import "../../../assets/styles/landing/banner.css";
 import "../../../assets/styles/landing/about.css";
 import "../../../assets/styles/landing/benefits.css";
 import "../../../assets/styles/landing/functions.css";
+import "../../../assets/styles/landing/cta.css";
 
 import notebookBanner from "../../../assets/img/notebook1.png";
 import tela1 from "../../../assets/img/tela1.png";
@@ -102,24 +103,23 @@ function LandingPage() {
 
         </section>
 
-        <section id="functions">
+        {/* <section id="functions">
           <h1>FUNCIONALIDADES</h1>
+        </section> */}
 
+        <section id="cta">
+          <p>Pronto para começar?</p>
+          <h2>Junte-se ao Fundz e viva a experiência universitária ao máximo.</h2>
+          <a href="#signup" className="cta-button">Criar conta</a>
         </section>
 
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
+        <footer style={{ marginTop: "50px" }}>
+          <div>
+            <img src="../../../../../assets/styles/img/logo.png" alt="Logo" /><span>Fundz</span>
+            <p style={{ color: "var(--text-color-secondary)" }}>© 2025 Fundz. Todos os direitos reservados.</p>
+          </div>
+        </footer>
+
       </div>
     </>
   )
