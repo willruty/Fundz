@@ -8,7 +8,7 @@ import (
 // -------
 // Create
 // -------
-func CreateUser(user entity.User) error {
+func CreateUser(user entity.UserAccount) error {
 	if err := database.DB.Create(&user).Error; err != nil {
 		return err
 	}
@@ -18,12 +18,12 @@ func CreateUser(user entity.User) error {
 // -------
 // ReadAll
 // -------
-func FindAllUsers() ([]entity.User, int64, error) {
+func FindAllUsers() ([]entity.UserAccount, int64, error) {
 
-	var users []entity.User
+	var users []entity.UserAccount
 	var count int64
 
-	if err := database.DB.Model(&entity.User{}).Count(&count).Error; err != nil {
+	if err := database.DB.Model(&entity.UserAccount{}).Count(&count).Error; err != nil {
 		return nil, 0, err
 	}
 
@@ -34,8 +34,8 @@ func FindAllUsers() ([]entity.User, int64, error) {
 // -------
 // Read
 // -------
-func FindUserById(id string) (entity.User, error) {
-	var user entity.User
+func FindUserById(id string) (entity.UserAccount, error) {
+	var user entity.UserAccount
 
 	if err := database.DB.Where("user_id = ?", id).First(&user).Error; err != nil {
 		return user, err
@@ -47,9 +47,9 @@ func FindUserById(id string) (entity.User, error) {
 // -------
 // Update
 // -------
-func UpdateUserById(input entity.User, id string) error {
+func UpdateUserById(input entity.UserAccount, id string) error {
 
-	var user entity.User
+	var user entity.UserAccount
 	if err := database.DB.Where("user_id = ?", id).First(&user).Error; err != nil {
 		return err
 	}
@@ -66,7 +66,7 @@ func UpdateUserById(input entity.User, id string) error {
 // -------
 func DeleteUserById(id string) error {
 
-	var user entity.User
+	var user entity.UserAccount
 	if _, err := FindUserById(id); err != nil {
 		return err
 	}

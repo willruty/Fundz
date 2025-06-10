@@ -13,7 +13,7 @@ import (
 // -------
 func CreateUser(c *gin.Context) {
 
-	var user entity.User
+	var user entity.UserAccount
 
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
@@ -69,7 +69,7 @@ func GetUserById(c *gin.Context) {
 // -------
 func UpdateUserById(c *gin.Context) {
 
-	var input entity.User
+	var input entity.UserAccount
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return

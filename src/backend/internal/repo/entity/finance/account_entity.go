@@ -1,13 +1,19 @@
 package finance
 
-import "time"
+import (
+	"fundz/internal/repo/entity/user"
+	"time"
+)
 
 type Account struct {
 	Account_id string `gorm:"type:varchar(50);primaryKey" json:"account_id"`
-	// user id
+
+	User_id     string           `gorm:"type:uuid; primaryKey" json:"user_id"`
+	UserAccount user.UserAccount `gorm:"foreignKey:User_id;references:User_id" json:"user_account"`
+
 	Account_name string `gorm:"type:varchar(50);not null" json:"account_name"`
-	Account_type string `gorm:"type:varchar(50);not null" json:"account_type"` // "corrente", "poupança"
-	Bank_name    string `gorm:"type:varchar(50);not null" json:"bank_name"`    // "Banco do Brasil", "Caixa Econômica Federal", etc.
+	Account_type string `gorm:"type:varchar(50);not null" json:"account_type"`
+	Bank_name    string `gorm:"type:varchar(50);not null" json:"bank_name"`
 
 	Created_at time.Time `gorm:"type:timestamp; default:current_timestamp" json:"created_at"`
 	Updated_at time.Time `gorm:"type:timestamp; default:current_timestamp" json:"updated_at"`

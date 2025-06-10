@@ -4,8 +4,13 @@ import "time"
 
 type Assignment struct {
 	Assignment_id string `gorm:"type:uuid; default:uuid_generate_v4(); primaryKey" json:"assignment_id"`
-	// student id
-	// subject id
+
+	Student_id string    `gorm:"type:uuid; index" json:"student_id"`
+	Student    []Student `gorm:"foreignKey:Student_id"`
+
+	Subject_id string  `gorm:"type:uuid; index" josn:"subject_id"`
+	Subject    Subject `gorm:"foreignKey:Subject_id"`
+
 	Title        string `gorm:"type:varchar(100); not null" json:"title"`
 	Description  string `gorm:"type:text; not null" json:"description"`
 	Deadline     string `gorm:"type:timestamp; not null" json:"deadline"`

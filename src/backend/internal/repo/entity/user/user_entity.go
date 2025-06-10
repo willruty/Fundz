@@ -1,6 +1,6 @@
 package user
 
-type User struct {
+type UserAccount struct {
 	User_id       string `gorm:"type:uuid; default:uuid_generate_v4(); primaryKey" json:"user_id"`
 	User_name     string `gorm:"type:varchar(70);not null" json:"user_name"`
 	User_email    string `gorm:"type:varchar(70);not null" json:"user_email"`
