@@ -2,8 +2,8 @@
 package controller
 
 import (
-	dao "fundz/internal/model/dao/finance"
-	entity "fundz/internal/model/entity/finance"
+	dao "fundz/internal/repo/dao/finance"
+	entity "fundz/internal/repo/entity/finance"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

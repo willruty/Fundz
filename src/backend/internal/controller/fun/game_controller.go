@@ -1,8 +1,8 @@
 package controller
 
 import (
-	dao "fundz/internal/model/dao/fun"
-	entity "fundz/internal/model/entity/fun"
+	dao "fundz/internal/repo/dao/fun"
+	entity "fundz/internal/repo/entity/fun"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -11,31 +11,31 @@ import (
 // -------
 // Create
 // -------
-func CreateGame(c *gin.Context) {
+func CreateMatch(c *gin.Context) {
 
-	var game entity.Game
+	var Match entity.Match
 
-	if err := c.ShouldBindJSON(&game); err != nil {
+	if err := c.ShouldBindJSON(&Match); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.CreateGame(game); err != nil {
+	if err := dao.CreateMatch(Match); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"data": game,
+		"data": Match,
 	})
 }
 
 // -------
 // GetAll
 // -------
-func GetAllGames(c *gin.Context) {
+func GetAllMatchs(c *gin.Context) {
 
-	games, rowsAffected, err := dao.FindAllGames()
+	Matchs, rowsAffected, err := dao.FindAllMatchs()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -44,18 +44,18 @@ func GetAllGames(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK,
 		gin.H{
-			"results":      games,
+			"results":      Matchs,
 			"RowsAffected": rowsAffected,
-			"RecordCount":  len(games),
+			"RecordCount":  len(Matchs),
 		})
 }
 
 // -------
 // GetById
 // -------
-func GetGameById(c *gin.Context) {
+func GetMatchById(c *gin.Context) {
 
-	result, err := dao.FindGameById(c.Param("id"))
+	result, err := dao.FindMatchById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -67,22 +67,22 @@ func GetGameById(c *gin.Context) {
 // -------
 // UpdateById
 // -------
-func UpdateGameById(c *gin.Context) {
+func UpdateMatchById(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if _, err := dao.FindGameById(id); err != nil {
+	if _, err := dao.FindMatchById(id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	var input entity.Game
+	var input entity.Match
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdateGameById(input, id); err != nil {
+	if err := dao.UpdateMatchById(input, id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -93,16 +93,16 @@ func UpdateGameById(c *gin.Context) {
 // -------
 // DeleteById
 // -------
-func DeleteGameById(c *gin.Context) {
+func DeleteMatchById(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if _, err := dao.FindGameById(id); err != nil {
+	if _, err := dao.FindMatchById(id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.DeleteGameById(id); err != nil {
+	if err := dao.DeleteMatchById(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to delete record " + err.Error()})
 		return
 	}

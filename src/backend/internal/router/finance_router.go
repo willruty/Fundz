@@ -10,7 +10,7 @@ func SetupFinanceRouter() *gin.Engine {
 	route := gin.New()
 	route.Use(gin.Recovery())
 
-	finance := route.Group("/Fundz/finance")
+	finance := route.Group("/finance")
 	{
 
 		// === Transaction ===

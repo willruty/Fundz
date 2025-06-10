@@ -41,8 +41,4 @@ func DatabaseConnect() {
 
 	DB = database
 	DB.SingularTable(true)
-
-	// DB.AutoMigrate(&User{})
-	// DB.Debug()
-
 }

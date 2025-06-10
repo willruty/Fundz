@@ -1,12 +1,12 @@
 package router
 
 import (
-	"fundz/internal/controller"
 	"os"
 	"strings"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	user_controller "fundz/internal/controller/user"
 )
 
 func configRouter() cors.Config {
@@ -21,7 +21,7 @@ func configRouter() cors.Config {
 func SetupRouter() *gin.Engine {
 
 	gin.SetMode(gin.ReleaseMode)
-	var modeDebug bool = true
+	var modeDebug bool
 	if len(os.Args) > 1 {
 		if strings.ToLower(os.Args[1]) == "-debug" {
 			modeDebug = true
@@ -38,27 +38,27 @@ func SetupRouter() *gin.Engine {
 
 	route.Use(cors.New(configRouter()))
 
+	// SetupAcademicRouter()
 	SetupFinanceRouter()
+	// SetupFunRouter()
 
-	v1 := route.Group("/Fundz")
+	v1 := route.Group("/fundz")
 
 	{
-
 		user := v1.Group("/user")
 		{
 			// === User CRUD ===
-			user.POST("/register", controller.CreateUser)
-			user.GET("/", controller.GetAllUsers)
-			user.GET("/:id", controller.GetUserById)
-			user.PUT("/", controller.UpdateUserById)
-			user.DELETE("/:id", controller.DeleteUserById)
+			user.POST("/register", user_controller.CreateUser)
+			user.GET("/", user_controller.GetAllUsers)
+			user.GET("/:id", user_controller.GetUserById)
+			user.PUT("/", user_controller.UpdateUserById)
+			user.DELETE("/:id", user_controller.DeleteUserById)
 		}
 
-		
 		// v1.POST("/login", user.LoginUserAccount)
-		// v1.GET("/user/getdata", user.GetDataByJWT)
-		// v1.GET("/dashboard", user.Dashboard)
+		// v1.POST("/register", user.RegisterUserAccount)
 
+		// v1.GET("/user/getdata", user.GetDataByJWT)
 	}
 
 	return route
