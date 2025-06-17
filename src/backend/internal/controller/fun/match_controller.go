@@ -35,7 +35,7 @@ func CreateMatch(c *gin.Context) {
 // -------
 func GetAllMatchs(c *gin.Context) {
 
-	Matchs, rowsAffected, err := dao.FindAllMatchs()
+	Matchs, rowsAffected, err := dao.GetAllMatch()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -55,7 +55,7 @@ func GetAllMatchs(c *gin.Context) {
 // -------
 func GetMatchById(c *gin.Context) {
 
-	result, err := dao.FindMatchById(c.Param("id"))
+	result, err := dao.GetMatchById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -69,20 +69,13 @@ func GetMatchById(c *gin.Context) {
 // -------
 func UpdateMatchById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindMatchById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
 	var input entity.Match
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdateMatchById(input, id); err != nil {
+	if err := dao.UpdateMatchById(input, input.Match_id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -96,12 +89,6 @@ func UpdateMatchById(c *gin.Context) {
 func DeleteMatchById(c *gin.Context) {
 
 	id := c.Param("id")
-
-	if _, err := dao.FindMatchById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
 	if err := dao.DeleteMatchById(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to delete record " + err.Error()})
 		return

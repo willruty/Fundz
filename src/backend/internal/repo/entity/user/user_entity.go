@@ -1,4 +1,4 @@
-package user
+package usuario
 
 type UserAccount struct {
 	User_id       string `gorm:"type:uuid; default:uuid_generate_v4(); primaryKey" json:"user_id"`

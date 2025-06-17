@@ -1,43 +1,38 @@
 package dao
 
 import (
+	"fmt"
 	database "fundz/internal/database"
-	entity "fundz/internal/repo/entity/academic"
+	"fundz/internal/repo/entity/academic"
 )
 
 // -------
 // Create
 // -------
-func CreateSubject(subject entity.Subject) error {
+func CreateSubject(subject academic.Subject) error {
 	if err := database.DB.Create(&subject).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-// -------
-// ReadAll
-// -------
-func FindAllSubjects() ([]entity.Subject, int64, error) {
+func GetAllSubject() ([]academic.Subject, int64, error) {
 
-	var subjects []entity.Subject
+	var subject []academic.Subject
 	var count int64
 
-	if err := database.DB.Model(&entity.Subject{}).Count(&count).Error; err != nil {
-		return nil, 0, err
+	result := database.DB.Model(&academic.Subject{}).Count(&count).Find(&subject)
+	if result.Error != nil {
+		return nil, 0, result.Error
 	}
 
-	result := database.DB.Order("subject_id asc").Find(&subjects) 
-	return subjects, result.RowsAffected, result.Error
+	return subject, result.RowsAffected, nil
 }
 
-// -------
-// Read 
-// -------
-func FindSubjectById(id string) (entity.Subject, error) {
-	var subject entity.Subject
+func GetSubjectById(pk string) (academic.Subject, error) {
+	var subject academic.Subject
 
-	if err := database.DB.Where("subject_id = ?", id).First(&subject).Error; err != nil {
+	if err := database.DB.Where("subject_id = ?", pk).First(&subject).Error; err != nil {
 		return subject, err
 	}
 
@@ -47,32 +42,29 @@ func FindSubjectById(id string) (entity.Subject, error) {
 // -------
 // Update
 // -------
-func UpdateSubjectById(input entity.Subject, id string) error {
+func UpdateSubjectById(academicUpdated academic.Subject, id string) error {
 
-	var subject entity.Subject
-	if err := database.DB.Where("subject_id = ?", id).First(&subject).Error; err != nil {
+	query := database.DB.Model(&academic.Subject{}).Where("subject_id = ?", id).Updates(academicUpdated)
+	if err := query.Error; err != nil {
 		return err
-	}
-
-	if err := database.DB.Model(&subject).Where("subject_id = ?", id).Updates(input).Error; err != nil {
-		return err
+	} else if query.RowsAffected == 0 {
+		return fmt.Errorf("registro não encontrado")
 	}
 
 	return nil
 }
 
 // -------
-// Delete 
+// Delete
 // -------
 func DeleteSubjectById(id string) error {
+	var subject academic.Subject
 
-	var subject entity.Subject
-	if _, err := FindSubjectById(id); err != nil {
+	query := database.DB.Where("subject_id = ?", id).Delete(subject)
+	if err := query.Error; err != nil {
 		return err
-	}
-
-	if err := database.DB.Model(&subject).Where("subject_id = ?", id).Delete(subject).Error; err != nil {
-		return err
+	} else if query.RowsAffected == 0 {
+		return fmt.Errorf("registro não encontrado")
 	}
 
 	return nil

@@ -36,7 +36,7 @@ func CreateTransaction(c *gin.Context) {
 // -------
 func GetAllTransactions(c *gin.Context) {
 
-	transactions, rowsAffected, err := dao.FindAllTransactions()
+	transactions, rowsAffected, err := dao.GetAllTransaction()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -56,7 +56,7 @@ func GetAllTransactions(c *gin.Context) {
 // -------
 func GetTransactionById(c *gin.Context) {
 
-	result, err := dao.FindTransactionById(c.Param("id"))
+	result, err := dao.GetTransactionById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -70,20 +70,13 @@ func GetTransactionById(c *gin.Context) {
 // -------
 func UpdateTransactionById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindTransactionById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
 	var input entity.Transaction
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdateTransactionById(input, id); err != nil {
+	if err := dao.UpdateTransactionById(input, input.Transaction_id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -98,7 +91,7 @@ func DeleteTransactionById(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if _, err := dao.FindTransactionById(id); err != nil {
+	if _, err := dao.GetTransactionById(id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}

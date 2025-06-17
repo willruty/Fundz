@@ -1,4 +1,4 @@
-package user
+package usuario
 
 type UserProfileScore struct {
 	Social_level            int64   `gorm:"type:bigint; not null; default:0;" json:"social_level"`

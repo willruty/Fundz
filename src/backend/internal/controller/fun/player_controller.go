@@ -35,7 +35,7 @@ func CreatePlayer(c *gin.Context) {
 // -------
 func GetAllPlayers(c *gin.Context) {
 
-	players, rowsAffected, err := dao.FindAllPlayers()
+	players, rowsAffected, err := dao.GetAllPlayers()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -55,7 +55,7 @@ func GetAllPlayers(c *gin.Context) {
 // -------
 func GetPlayerById(c *gin.Context) {
 
-	result, err := dao.FindPlayerById(c.Param("id"))
+	result, err := dao.GetPlayerById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -69,20 +69,13 @@ func GetPlayerById(c *gin.Context) {
 // -------
 func UpdatePlayerById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindPlayerById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
 	var input entity.Player
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdatePlayerById(input, id); err != nil {
+	if err := dao.UpdatePlayerById(input, input.Player_id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -97,7 +90,7 @@ func DeletePlayerById(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if _, err := dao.FindPlayerById(id); err != nil {
+	if _, err := dao.GetPlayerById(id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}

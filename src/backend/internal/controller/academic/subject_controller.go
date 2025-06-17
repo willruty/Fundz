@@ -36,7 +36,7 @@ func CreateSubject(c *gin.Context) {
 // -------
 func GetAllSubjects(c *gin.Context) {
 
-	subjects, rowsAffected, err := dao.FindAllSubjects()
+	subjects, rowsAffected, err := dao.GetAllSubject()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -56,7 +56,7 @@ func GetAllSubjects(c *gin.Context) {
 // -------
 func GetSubjectById(c *gin.Context) {
 
-	result, err := dao.FindSubjectById(c.Param("id"))
+	result, err := dao.GetSubjectById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -70,20 +70,13 @@ func GetSubjectById(c *gin.Context) {
 // -------
 func UpdateSubjectById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindSubjectById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
 	var input entity.Subject
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdateSubjectById(input, id); err != nil {
+	if err := dao.UpdateSubjectById(input, input.Subject_id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -96,14 +89,7 @@ func UpdateSubjectById(c *gin.Context) {
 // -------
 func DeleteSubjectById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindSubjectById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
-	if err := dao.DeleteSubjectById(id); err != nil {
+	if err := dao.DeleteSubjectById(c.Param("id")); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to delete record " + err.Error()})
 		return
 	}

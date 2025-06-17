@@ -9,7 +9,7 @@ type Student struct {
 	Student_id string `gorm:"type:uuid; default:uuid_generate_v4(); primaryKey" json:"student_id"`
 
 	User_id     string           `gorm:"type:uuid; index" json:"user_id"`
-	UserAccount user.UserAccount `gorm:"foreignKey:User_id;references:User_id" json:"user_account"`
+	UserAccount usuario.UserAccount `gorm:"foreignKey:User_id;references:User_id" json:"user_account"`
 
 	Course    string `gorm:"type:varchar(70); not null" json:"course"`
 	Institute string `gorm:"type:varchar(100)" json:"institute"`

@@ -1,43 +1,38 @@
 package dao
 
 import (
+	"fmt"
 	database "fundz/internal/database"
-	entity "fundz/internal/repo/entity/finance"
+	"fundz/internal/repo/entity/finance"
 )
 
 // -------
 // Create
 // -------
-func CreateTransaction(transaction entity.Transaction) error {
+func CreateTransaction(transaction finance.Transaction) error {
 	if err := database.DB.Create(&transaction).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-// -------
-// ReadAll
-// -------
-func FindAllTransactions() ([]entity.Transaction, int64, error) {
+func GetAllTransaction() ([]finance.Transaction, int64, error) {
 
-	var transactions []entity.Transaction
+	var transaction []finance.Transaction
 	var count int64
 
-	if err := database.DB.Model(&entity.Transaction{}).Count(&count).Error; err != nil {
-		return nil, 0, err
+	result := database.DB.Model(&finance.Transaction{}).Count(&count).Find(&transaction)
+	if result.Error != nil {
+		return nil, 0, result.Error
 	}
 
-	result := database.DB.Order("transaction_id asc").Find(&transactions) 
-	return transactions, result.RowsAffected, result.Error
+	return transaction, result.RowsAffected, nil
 }
 
-// -------
-// Read 
-// -------
-func FindTransactionById(id string) (entity.Transaction, error) {
-	var transaction entity.Transaction
+func GetTransactionById(pk string) (finance.Transaction, error) {
+	var transaction finance.Transaction
 
-	if err := database.DB.Where("transaction_id = ?", id).First(&transaction).Error; err != nil {
+	if err := database.DB.Where("transaction_id = ?", pk).First(&transaction).Error; err != nil {
 		return transaction, err
 	}
 
@@ -47,32 +42,29 @@ func FindTransactionById(id string) (entity.Transaction, error) {
 // -------
 // Update
 // -------
-func UpdateTransactionById(input entity.Transaction, id string) error {
+func UpdateTransactionById(financeUpdated finance.Transaction, id string) error {
 
-	var transaction entity.Transaction
-	if err := database.DB.Where("transaction_id = ?", id).First(&transaction).Error; err != nil {
+	query := database.DB.Model(&finance.Transaction{}).Where("transaction_id = ?", id).Updates(financeUpdated)
+	if err := query.Error; err != nil {
 		return err
-	}
-
-	if err := database.DB.Model(&transaction).Where("transaction_id = ?", id).Updates(input).Error; err != nil {
-		return err
+	} else if query.RowsAffected == 0 {
+		return fmt.Errorf("registro não encontrado")
 	}
 
 	return nil
 }
 
 // -------
-// Delete 
+// Delete
 // -------
 func DeleteTransactionById(id string) error {
+	var transaction finance.Transaction
 
-	var transaction entity.Transaction
-	if _, err := FindTransactionById(id); err != nil {
+	query := database.DB.Where("transaction_id = ?", id).Delete(transaction)
+	if err := query.Error; err != nil {
 		return err
-	}
-
-	if err := database.DB.Model(&transaction).Where("transaction_id = ?", id).Delete(transaction).Error; err != nil {
-		return err
+	} else if query.RowsAffected == 0 {
+		return fmt.Errorf("registro não encontrado")
 	}
 
 	return nil

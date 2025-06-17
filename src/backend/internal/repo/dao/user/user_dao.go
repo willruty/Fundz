@@ -1,43 +1,38 @@
 package dao
 
 import (
-	database "fundz/internal/database"
-	entity "fundz/internal/repo/entity/user"
+	"fmt"
+	"fundz/internal/database"
+	usuario "fundz/internal/repo/entity/user"
+
 )
 
 // -------
 // Create
 // -------
-func CreateUser(user entity.UserAccount) error {
+func CreateUser(user usuario.UserAccount) error {
 	if err := database.DB.Create(&user).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-// -------
-// ReadAll
-// -------
-func FindAllUsers() ([]entity.UserAccount, int64, error) {
+func GetAllUser() ([]usuario.UserAccount, int64, error) {
 
-	var users []entity.UserAccount
-	var count int64
+	var user []usuario.UserAccount
 
-	if err := database.DB.Model(&entity.UserAccount{}).Count(&count).Error; err != nil {
-		return nil, 0, err
+	result := database.DB.Model(&usuario.UserAccount{}).Find(&user)
+	if result.Error != nil {
+		return nil, 0, result.Error
 	}
 
-	result := database.DB.Order("user_id asc").Find(&users)
-	return users, result.RowsAffected, result.Error
+	return user, result.RowsAffected, nil
 }
 
-// -------
-// Read
-// -------
-func FindUserById(id string) (entity.UserAccount, error) {
-	var user entity.UserAccount
+func GetUserById(pk string) (usuario.UserAccount, error) {
+	var user usuario.UserAccount
 
-	if err := database.DB.Where("user_id = ?", id).First(&user).Error; err != nil {
+	if err := database.DB.Where("user_id = ?", pk).First(&user).Error; err != nil {
 		return user, err
 	}
 
@@ -47,15 +42,13 @@ func FindUserById(id string) (entity.UserAccount, error) {
 // -------
 // Update
 // -------
-func UpdateUserById(input entity.UserAccount, id string) error {
+func UpdateUserById(userUpdated usuario.UserAccount, id string) error {
 
-	var user entity.UserAccount
-	if err := database.DB.Where("user_id = ?", id).First(&user).Error; err != nil {
+	query := database.DB.Model(&usuario.UserAccount{}).Where("user_id = ?", id).Updates(userUpdated)
+	if err := query.Error; err != nil {
 		return err
-	}
-
-	if err := database.DB.Model(&user).Where("user_id = ?", id).Updates(input).Error; err != nil {
-		return err
+	} else if query.RowsAffected == 0 {
+		return fmt.Errorf("registro não encontrado")
 	}
 
 	return nil
@@ -65,14 +58,13 @@ func UpdateUserById(input entity.UserAccount, id string) error {
 // Delete
 // -------
 func DeleteUserById(id string) error {
+	var user usuario.UserAccount
 
-	var user entity.UserAccount
-	if _, err := FindUserById(id); err != nil {
+	query := database.DB.Where("user_id = ?", id).Delete(user)
+	if err := query.Error; err != nil {
 		return err
-	}
-
-	if err := database.DB.Model(&user).Where("user_id = ?", id).Delete(user).Error; err != nil {
-		return err
+	} else if query.RowsAffected == 0 {
+		return fmt.Errorf("registro não encontrado")
 	}
 
 	return nil

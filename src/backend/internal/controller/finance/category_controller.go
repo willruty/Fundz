@@ -35,7 +35,7 @@ func CreateCategory(c *gin.Context) {
 // -------
 func GetAllCategories(c *gin.Context) {
 
-	categorys, rowsAffected, err := dao.FindAllCategorys()
+	categorys, rowsAffected, err := dao.GetAllCategories()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -55,7 +55,7 @@ func GetAllCategories(c *gin.Context) {
 // -------
 func GetCategoryById(c *gin.Context) {
 
-	result, err := dao.FindCategoryById(c.Param("id"))
+	result, err := dao.GetCategoryById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -69,20 +69,13 @@ func GetCategoryById(c *gin.Context) {
 // -------
 func UpdateCategoryById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindCategoryById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
 	var input entity.Category
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.UpdateCategoryById(input, id); err != nil {
+	if err := dao.UpdateCategoryById(input, input.Category_id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
@@ -95,14 +88,7 @@ func UpdateCategoryById(c *gin.Context) {
 // -------
 func DeleteCategoryById(c *gin.Context) {
 
-	id := c.Param("id")
-
-	if _, err := dao.FindCategoryById(id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
-
-	if err := dao.DeleteCategoryById(id); err != nil {
+	if err := dao.DeleteCategoryById(c.Param("id")); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to delete record " + err.Error()})
 		return
 	}

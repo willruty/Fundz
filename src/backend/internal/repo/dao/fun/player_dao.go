@@ -1,43 +1,38 @@
 package dao
 
 import (
-	database "fundz/internal/database"
-	entity "fundz/internal/repo/entity/fun"
+	"fmt"
+	"fundz/internal/database"
+	"fundz/internal/repo/entity/fun"
 )
 
 // -------
 // Create
 // -------
-func CreatePlayer(player entity.Player) error {
+func CreatePlayer(player fun.Player) error {
 	if err := database.DB.Create(&player).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-// -------
-// ReadAll
-// -------
-func FindAllPlayers() ([]entity.Player, int64, error) {
+func GetAllPlayers() ([]fun.Player, int64, error) {
 
-	var players []entity.Player
+	var player []fun.Player
 	var count int64
 
-	if err := database.DB.Model(&entity.Player{}).Count(&count).Error; err != nil {
-		return nil, 0, err
+	result := database.DB.Model(&fun.Player{}).Count(&count).Find(&player)
+	if result.Error != nil {
+		return nil, 0, result.Error
 	}
 
-	result := database.DB.Order("player_id asc").Find(&players) 
-	return players, result.RowsAffected, result.Error
+	return player, result.RowsAffected, nil
 }
 
-// -------
-// Read 
-// -------
-func FindPlayerById(id string) (entity.Player, error) {
-	var player entity.Player
+func GetPlayerById(pk string) (fun.Player, error) {
+	var player fun.Player
 
-	if err := database.DB.Where("player_id = ?", id).First(&player).Error; err != nil {
+	if err := database.DB.Where("player_id = ?", pk).First(&player).Error; err != nil {
 		return player, err
 	}
 
@@ -47,32 +42,29 @@ func FindPlayerById(id string) (entity.Player, error) {
 // -------
 // Update
 // -------
-func UpdatePlayerById(input entity.Player, id string) error {
+func UpdatePlayerById(funUpdated fun.Player, id string) error {
 
-	var player entity.Player
-	if err := database.DB.Where("player_id = ?", id).First(&player).Error; err != nil {
+	query := database.DB.Model(&fun.Player{}).Where("player_id = ?", id).Updates(funUpdated)
+	if err := query.Error; err != nil {
 		return err
-	}
-
-	if err := database.DB.Model(&player).Where("player_id = ?", id).Updates(input).Error; err != nil {
-		return err
+	} else if query.RowsAffected == 0 {
+		return fmt.Errorf("registro não encontrado")
 	}
 
 	return nil
 }
 
 // -------
-// Delete 
+// Delete
 // -------
 func DeletePlayerById(id string) error {
+	var player fun.Player
 
-	var player entity.Player
-	if _, err := FindPlayerById(id); err != nil {
+	query := database.DB.Where("player_id = ?", id).Delete(player)
+	if err := query.Error; err != nil {
 		return err
-	}
-
-	if err := database.DB.Model(&player).Where("player_id = ?", id).Delete(player).Error; err != nil {
-		return err
+	} else if query.RowsAffected == 0 {
+		return fmt.Errorf("registro não encontrado")
 	}
 
 	return nil

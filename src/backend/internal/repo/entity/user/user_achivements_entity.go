@@ -1,4 +1,4 @@
-package user
+package usuario
 
 type UserAchievement struct {
 	Achivement_id       string `gorm:"type:uuid; default:uuid_generate_v4(); primaryKey" json:"achivement_id"`

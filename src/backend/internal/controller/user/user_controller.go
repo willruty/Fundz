@@ -2,7 +2,7 @@ package user
 
 import (
 	dao "fundz/internal/repo/dao/user"
-	entity "fundz/internal/repo/entity/user"
+	usuario "fundz/internal/repo/entity/user"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -13,7 +13,7 @@ import (
 // -------
 func CreateUser(c *gin.Context) {
 
-	var user entity.UserAccount
+	var user usuario.UserAccount
 
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
@@ -35,7 +35,7 @@ func CreateUser(c *gin.Context) {
 // -------
 func GetAllUsers(c *gin.Context) {
 
-	users, rowsAffected, err := dao.FindAllUsers()
+	users, rowsAffected, err := dao.GetAllUser()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -55,7 +55,7 @@ func GetAllUsers(c *gin.Context) {
 // -------
 func GetUserById(c *gin.Context) {
 
-	result, err := dao.FindUserById(c.Param("id"))
+	result, err := dao.GetUserById(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -69,7 +69,7 @@ func GetUserById(c *gin.Context) {
 // -------
 func UpdateUserById(c *gin.Context) {
 
-	var input entity.UserAccount
+	var input usuario.UserAccount
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -87,11 +87,6 @@ func UpdateUserById(c *gin.Context) {
 // DeleteById
 // -------
 func DeleteUserById(c *gin.Context) {
-
-	if _, err := dao.FindUserById(c.Param("id")); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
-		return
-	}
 
 	if err := dao.DeleteUserById(c.Param("id")); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to delete record " + err.Error()})

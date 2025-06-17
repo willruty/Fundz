@@ -18,25 +18,25 @@ func CreateCategory(category entity.Category) error {
 // -------
 // ReadAll
 // -------
-func FindAllCategorys() ([]entity.Category, int64, error) {
+func GetAllCategories() ([]entity.Category, int64, error) {
 
-	var categorys []entity.Category
+	var categories []entity.Category
 	var count int64
 
-	if err := database.DB.Model(&entity.Category{}).Count(&count).Error; err != nil {
-		return nil, 0, err
+	result := database.DB.Model(&entity.Category{}).Count(&count).Find(&categories)
+	if result.Error != nil {
+		return nil, 0, result.Error
 	}
 
-	result := database.DB.Order("category_id asc").Find(&categorys) 
-	return categorys, result.RowsAffected, result.Error
+	return categories, result.RowsAffected, nil
 }
 
 // -------
-// Read 
+// Read
 // -------
-func FindCategoryById(id string) (entity.Category, error) {
-	var category entity.Category
+func GetCategoryById(id string) (entity.Category, error) {
 
+	var category entity.Category
 	if err := database.DB.Where("category_id = ?", id).First(&category).Error; err != nil {
 		return category, err
 	}
@@ -50,10 +50,6 @@ func FindCategoryById(id string) (entity.Category, error) {
 func UpdateCategoryById(input entity.Category, id string) error {
 
 	var category entity.Category
-	if err := database.DB.Where("category_id = ?", id).First(&category).Error; err != nil {
-		return err
-	}
-
 	if err := database.DB.Model(&category).Where("category_id = ?", id).Updates(input).Error; err != nil {
 		return err
 	}
@@ -62,15 +58,11 @@ func UpdateCategoryById(input entity.Category, id string) error {
 }
 
 // -------
-// Delete 
+// Delete
 // -------
 func DeleteCategoryById(id string) error {
 
 	var category entity.Category
-	if _, err := FindCategoryById(id); err != nil {
-		return err
-	}
-
 	if err := database.DB.Model(&category).Where("category_id = ?", id).Delete(category).Error; err != nil {
 		return err
 	}

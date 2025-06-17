@@ -2,6 +2,10 @@ package main
 
 import (
 	"fmt"
+	"fundz/internal/config"
+	"fundz/internal/database"
+	"fundz/internal/router"
+	"fundz/internal/service"
 	"strconv"
 )
 

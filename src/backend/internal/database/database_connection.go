@@ -1,8 +1,8 @@
 package database
 
 import (
-	"fundz/internal/config"
 	"fmt"
+	"fundz/internal/config"
 	"net/url"
 
 	"github.com/jinzhu/gorm"
@@ -30,11 +30,10 @@ func DatabaseConnect() {
 		Scheme:   "postgres",
 		Host:     fmt.Sprintf("%s:%d", config.Env.Database.Host, config.Env.Database.Port),
 		Path:     config.Env.Database.DatabaseName,
-		RawQuery: (&url.Values{"sslmode": []string{"disable"}}).Encode(),
+		RawQuery: (&url.Values{"sslmode": []string{config.Env.Database.SSlMode}}).Encode(),
 	}
 
 	database, err := gorm.Open("postgres", dsn.String())
-
 	if err != nil {
 		panic(err.Error())
 	}
