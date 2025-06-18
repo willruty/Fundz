@@ -11,7 +11,7 @@ import (
 // -------
 // Create
 // -------
-func CreateStudy_session(c *gin.Context) {
+func CreateStudySession(c *gin.Context) {
 
 	var study_session entity.Study_session
 
@@ -33,7 +33,7 @@ func CreateStudy_session(c *gin.Context) {
 // -------
 // GetAll
 // -------
-func GetAllStudy_sessions(c *gin.Context) {
+func GetAllStudySessions(c *gin.Context) {
 
 	study_sessions, rowsAffected, err := dao.FindAllStudy_sessions()
 
@@ -53,7 +53,7 @@ func GetAllStudy_sessions(c *gin.Context) {
 // -------
 // GetById
 // -------
-func GetStudy_sessionById(c *gin.Context) {
+func GetStudySessionById(c *gin.Context) {
 
 	result, err := dao.FindStudy_sessionById(c.Param("id"))
 	if err != nil {
@@ -67,7 +67,7 @@ func GetStudy_sessionById(c *gin.Context) {
 // -------
 // UpdateById
 // -------
-func UpdateStudy_sessionById(c *gin.Context) {
+func UpdateStudySessionById(c *gin.Context) {
 
 	id := c.Param("id")
 
@@ -93,7 +93,7 @@ func UpdateStudy_sessionById(c *gin.Context) {
 // -------
 // DeleteById
 // -------
-func DeleteStudy_sessionById(c *gin.Context) {
+func DeleteStudySessionById(c *gin.Context) {
 
 	id := c.Param("id")
 

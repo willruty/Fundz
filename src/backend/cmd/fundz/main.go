@@ -22,7 +22,7 @@ func main() {
 
 	service.PrintBanner()
 
-	r := router.SetupRouter()
+	r := router.SetupMainRouter()
 	r.Run(":" + port)
 
 }

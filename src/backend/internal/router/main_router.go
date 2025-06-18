@@ -4,9 +4,10 @@ import (
 	"os"
 	"strings"
 
+	"fundz/internal/controller"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	user_controller "fundz/internal/controller/user"
 )
 
 func configRouter() cors.Config {
@@ -18,7 +19,7 @@ func configRouter() cors.Config {
 	return config
 }
 
-func SetupRouter() *gin.Engine {
+func SetupMainRouter() *gin.Engine {
 
 	gin.SetMode(gin.ReleaseMode)
 	var modeDebug bool
@@ -35,31 +36,17 @@ func SetupRouter() *gin.Engine {
 	if modeDebug {
 		route.Use(gin.Logger())
 	}
-
+	
 	route.Use(cors.New(configRouter()))
 
-	// SetupAcademicRouter()
-	SetupFinanceRouter()
-	// SetupFunRouter()
+	main := route.Group("/fundz")
 
-	v1 := route.Group("/fundz")
+	SetupAcademicRouter(main)
+	SetupFinanceRouter(main)
+	SetupUserRouter(main)
+	SetupFunRouter(main)
 
-	{
-		user := v1.Group("/user")
-		{
-			// === User CRUD ===
-			user.POST("/register", user_controller.CreateUser)
-			user.GET("/", user_controller.GetAllUsers)
-			user.GET("/:id", user_controller.GetUserById)
-			user.PUT("/", user_controller.UpdateUserById)
-			user.DELETE("/:id", user_controller.DeleteUserById)
-		}
-
-		// v1.POST("/login", user.LoginUserAccount)
-		// v1.POST("/register", user.RegisterUserAccount)
-
-		// v1.GET("/user/getdata", user.GetDataByJWT)
-	}
+	main.GET("/heath", controller.GetHealth)
 
 	return route
 }

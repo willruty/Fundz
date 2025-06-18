@@ -11,31 +11,31 @@ import (
 // -------
 // Create
 // -------
-func CreateGame_type(c *gin.Context) {
+func CreateGameType(c *gin.Context) {
 
-	var game_type entity.Game_type
+	var gameType entity.GameType
 
-	if err := c.ShouldBindJSON(&game_type); err != nil {
+	if err := c.ShouldBindJSON(&gameType); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
 	}
 
-	if err := dao.CreateGameType(game_type); err != nil {
+	if err := dao.CreateGameType(gameType); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"data": game_type,
+		"data": gameType,
 	})
 }
 
 // -------
 // GetAll
 // -------
-func GetAllGame_types(c *gin.Context) {
+func GetAllGameTypes(c *gin.Context) {
 
-	game_types, rowsAffected, err := dao.GetAllGameType()
+	gameTypes, rowsAffected, err := dao.GetAllGameType()
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"erro": "Nenhum registro encontrado: " + err.Error()})
@@ -44,16 +44,16 @@ func GetAllGame_types(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK,
 		gin.H{
-			"results":      game_types,
+			"results":      gameTypes,
 			"RowsAffected": rowsAffected,
-			"RecordCount":  len(game_types),
+			"RecordCount":  len(gameTypes),
 		})
 }
 
 // -------
 // GetById
 // -------
-func GetGame_typeById(c *gin.Context) {
+func GetGameTypeById(c *gin.Context) {
 
 	result, err := dao.GetGameTypeById(c.Param("id"))
 	if err != nil {
@@ -67,7 +67,7 @@ func GetGame_typeById(c *gin.Context) {
 // -------
 // UpdateById
 // -------
-func UpdateGame_typeById(c *gin.Context) {
+func UpdateGameTypeById(c *gin.Context) {
 
 	id := c.Param("id")
 
@@ -76,7 +76,7 @@ func UpdateGame_typeById(c *gin.Context) {
 		return
 	}
 
-	var input entity.Game_type
+	var input entity.GameType
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"erro": err.Error()})
 		return
@@ -93,7 +93,7 @@ func UpdateGame_typeById(c *gin.Context) {
 // -------
 // DeleteById
 // -------
-func DeleteGame_typeById(c *gin.Context) {
+func DeleteGameTypeById(c *gin.Context) {
 
 	id := c.Param("id")
 

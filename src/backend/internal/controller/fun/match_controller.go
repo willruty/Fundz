@@ -33,7 +33,7 @@ func CreateMatch(c *gin.Context) {
 // -------
 // GetAll
 // -------
-func GetAllMatchs(c *gin.Context) {
+func GetAllMatches(c *gin.Context) {
 
 	Matchs, rowsAffected, err := dao.GetAllMatch()
 

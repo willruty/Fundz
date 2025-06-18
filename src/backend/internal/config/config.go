@@ -49,23 +49,20 @@ func Load() error {
 		return err
 	}
 
-	env := ConfigEnv{}
+	Env = ConfigEnv{}
 
 	// Port
-	env.Service.Port = cfg.Section("SERVICE").Key("PORT").MustInt(0000)
+	Env.Service.Port = cfg.Section("SERVICE").Key("PORT").MustInt(0000)
 
 	// Database
-	env.Database.Host = cfg.Section("DATABASE").Key("HOST").String()
-	env.Database.Port = cfg.Section("DATABASE").Key("PORT").MustInt(0000)
-	env.Database.User = cfg.Section("DATABASE").Key("USER").String()
-	env.Database.Password = cfg.Section("DATABASE").Key("PASSWORD").String()
-	env.Database.DatabaseName = cfg.Section("DATABASE").Key("DBNAME").String()
-	env.Database.DatabaseName = cfg.Section("DATABASE").Key("SSLMODE").String()
+	Env.Database.Host = cfg.Section("DATABASE").Key("HOST").String()
+	Env.Database.Port = cfg.Section("DATABASE").Key("PORT").MustInt(0000)
+	Env.Database.User = cfg.Section("DATABASE").Key("USER").String()
+	Env.Database.Password = cfg.Section("DATABASE").Key("PASSWORD").String()
+	Env.Database.DatabaseName = cfg.Section("DATABASE").Key("DBNAME").String()
+	Env.Database.SSlMode = cfg.Section("DATABASE").Key("SSLMODE").String()
 	
-	env.Jwt.JWTSECRET = cfg.Section("JWT").Key("JWTSECRET").String()
-
-	Env = env
+	Env.Jwt.JWTSECRET = cfg.Section("JWT").Key("JWTSECRET").String()
 
 	return nil
-
 }
