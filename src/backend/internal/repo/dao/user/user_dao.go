@@ -17,22 +17,10 @@ func CreateUser(user usuario.UserAccount) error {
 	return nil
 }
 
-func GetAllUser() ([]usuario.UserAccount, int64, error) {
-
-	var user []usuario.UserAccount
-
-	result := database.DB.Model(&usuario.UserAccount{}).Find(&user)
-	if result.Error != nil {
-		return nil, 0, result.Error
-	}
-
-	return user, result.RowsAffected, nil
-}
-
-func GetUserById(pk string) (usuario.UserAccount, error) {
+func GetUserByEmail(email string) (usuario.UserAccount, error) {
 	var user usuario.UserAccount
 
-	if err := database.DB.Where("user_id = ?", pk).First(&user).Error; err != nil {
+	if err := database.DB.Model(&usuario.UserAccount{}).Where("email = ?", email).First(&user).Error; err != nil {
 		return user, err
 	}
 

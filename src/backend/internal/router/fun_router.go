@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupFunRouter(rg *gin.RouterGroup) {
+func SetupFunRouter(rg *gin.RouterGroup) int {
 
 	fun := rg.Group("/fun")
 	{
@@ -47,4 +47,5 @@ func SetupFunRouter(rg *gin.RouterGroup) {
 		}
 	}
 
+	return 15
 }

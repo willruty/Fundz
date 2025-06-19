@@ -1,10 +1,12 @@
 package router
 
 import (
+	"fmt"
 	"os"
 	"strings"
 
 	"fundz/internal/controller"
+	"fundz/internal/service"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -36,15 +38,22 @@ func SetupMainRouter() *gin.Engine {
 	if modeDebug {
 		route.Use(gin.Logger())
 	}
-	
+
 	route.Use(cors.New(configRouter()))
 
 	main := route.Group("/fundz")
 
-	SetupAcademicRouter(main)
-	SetupFinanceRouter(main)
-	SetupUserRouter(main)
-	SetupFunRouter(main)
+	academicEndpointsCount := SetupAcademicRouter(main)
+	funEndpointsCount := SetupFunRouter(main)
+	financeEndpointsCount := SetupFinanceRouter(main)
+	userEndpointsCount := SetupUserRouter(main)
+
+	endpoints := fmt.Sprintf("Academic -> %d | ", academicEndpointsCount) +
+		fmt.Sprintf("Fun -> %d | ", funEndpointsCount) +
+		fmt.Sprintf("Finance -> %d | ", financeEndpointsCount) +
+		fmt.Sprintf("User -> %d", userEndpointsCount)
+
+	service.PrintBanner(endpoints)
 
 	main.GET("/heath", controller.GetHealth)
 

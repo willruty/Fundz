@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupFinanceRouter(rg *gin.RouterGroup) {
+func SetupFinanceRouter(rg *gin.RouterGroup) int {
 
 	finance := rg.Group("/finance")
 	{
@@ -44,4 +44,6 @@ func SetupFinanceRouter(rg *gin.RouterGroup) {
 			goal.DELETE("/:id", controller.DeleteGoalById)
 		}
 	}
+
+	return 15
 }

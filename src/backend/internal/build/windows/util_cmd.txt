@@ -1,0 +1,3 @@
+Comando pra iniciar serviço postgres
+
+net start postgresql-x64-17

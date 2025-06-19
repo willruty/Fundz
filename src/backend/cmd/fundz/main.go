@@ -5,7 +5,6 @@ import (
 	"fundz/internal/config"
 	"fundz/internal/database"
 	"fundz/internal/router"
-	"fundz/internal/service"
 	"strconv"
 )
 
@@ -19,8 +18,6 @@ func main() {
 
 	database.DatabaseConnect()
 	port := strconv.Itoa(config.Env.Service.Port)
-
-	service.PrintBanner()
 
 	r := router.SetupMainRouter()
 	r.Run(":" + port)
