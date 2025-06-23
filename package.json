@@ -1,0 +1,23 @@
+{
+  "name": "fundz",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willruty/fundz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willruty/fundz/issues"
+  },
+  "homepage": "https://github.com/willruty/fundz#readme",
+  "description": "",
+  "workspaces": [
+    "src/frontend/apps/*"
+  ]
+}
