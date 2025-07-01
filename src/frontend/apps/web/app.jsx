@@ -12,8 +12,8 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/fundz" element={<LandingPage />} />
-        <Route path="/fundz/home" element={<HomePage />} />
         <Route path="/fundz/auth" element={<AuthPage />} />
+        <Route path="/fundz/home" element={<HomePage />} />
         <Route path="/fundz/fun" element={<FunHomePage />} />
         <Route path="/fundz/academic" element={<AcademicHomePage />} />
         <Route path="/fundz/finance" element={<FinanceHomePage />} />

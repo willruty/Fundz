@@ -1,3 +1,5 @@
 Comando pra iniciar serviço postgres
+-> net start postgresql-x64-17
 
-net start postgresql-x64-17
+printar estrutura de arquivos projeto
+-> tree /f

@@ -109,3 +109,4 @@ func DeleteUserById(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": "row deleted"})
 }
+

@@ -17,17 +17,18 @@
   --white: #fff;
   --light-gray: #444;
 
+  --bg-color: #fff;
+  --detail-color: #F5F5F5;
   --primary-color: #1B365D;
   --secondary-color: #FFD100;
-  --detail-color: #F5F5F5;
-  --bg-color: #fff;
-
+  --secondary-color-hover: #ffde4b;
+  
   --text-600: #C8C8C8;
   --text-400: #7B7B7B;
   --text-200: #333333;
 
   --sml-font-size: 0.8rem;
-  --normal-font-size: 1rem;
+  --regular-font-size: 1rem;
   --l-font-size: 1.5rem;
   --xl-font-size: 2rem;
   --xxl-font-size: 3rem;
