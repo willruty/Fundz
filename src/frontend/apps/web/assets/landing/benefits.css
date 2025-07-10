@@ -1,39 +1,61 @@
 section#benefits {
-    padding: 4rem 2rem;
-    text-align: center;
-    /* border: 1px solid green; */
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    row-gap: 2.5rem;
+    grid-template-rows: 1;
+    margin-top: 250px;
+    padding: 50px;
 
-    & div.benefit-card-text {
-        padding: 2rem;
-        color: var(--text-color);
-        transition: var(--transicao-padrao);
-        
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: left;
-
-        & h3.benefit-card-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        & p.benefit-card-description {
-            color: var(--text-color-secondary);
-        }
-
-    }
-
-    & img.benefit-card-image {
-        width: 90%;
-        height: auto;
+    & div#benefits-img {
+        grid-column: 1;
+        grid-row: 1;
+        text-align: center;
         margin: auto;
         border-radius: var(--border-radius);
-        margin-bottom: 1rem;
+        width: 80%;
+        height: 100%;
+
+        background-position: center;
+        background-size: cover;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    & div#benefits-info {
+        grid-column: 2;
+        grid-row: 1;
+        padding: 60px;
+
+        & h1#benefits-main-title {
+            color: var(--primary-color);
+            font-size: var(--xxl-font-size);
+            margin-bottom: 30px;
+        }
+
+        & div#benefits-cards {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            
+            & div.benefits-card {
+                transition: var(--transicao-padrao);
+                cursor: pointer;
+                padding: 30px;
+
+                &.active {
+                    border-right: 4px solid var(--primary-color);
+                }
+                
+                &.disabled {
+                    border-right: 4px solid var(--gray-900);
+                    pointer-events: auto;
+                    filter: grayscale(10%);
+                }
+
+                & h1.benefits-title {
+                    color: var(--secondary-color);
+                    margin-bottom: 15px;
+                }
+            }
+        }
     }
 }

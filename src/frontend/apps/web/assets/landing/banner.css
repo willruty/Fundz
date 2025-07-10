@@ -18,7 +18,7 @@ section#banner {
         }
 
         & p {
-            font-size: var(--normal-font-size);
+            font-size: var(--m-font-size);
             color: var(--secondary-color);
             margin-bottom: 80px;
             font-weight: 500;
@@ -53,8 +53,8 @@ section#banner {
             margin-top: 10%;
             position: relative;
             padding: 30px;
-            border: 1px solid var(--light-gray);
             border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             background: #b3b3b336;
             backdrop-filter: blur(25px);
             width: 90%;

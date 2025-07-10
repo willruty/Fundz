@@ -17,18 +17,22 @@
   --white: #fff;
   --light-gray: #444;
 
-  --bg-color: #fff;
+  --bg-color: #FEFDF9;
   --detail-color: #F5F5F5;
   --primary-color: #1B365D;
   --secondary-color: #FFD100;
   --secondary-color-hover: #ffde4b;
-  
-  --text-600: #C8C8C8;
-  --text-400: #7B7B7B;
-  --text-200: #333333;
+  --card-bg: #e7e7e7;
+
+  --gray-900: #ebebeb;
+  --gray-800: #dbdbdb;
+  --gray-600: #C8C8C8;
+  --gray-400: #7B7B7B;
+  --gray-200: #333333;
 
   --sml-font-size: 0.8rem;
   --regular-font-size: 1rem;
+  --m-font-size: 1.3rem;
   --l-font-size: 1.5rem;
   --xl-font-size: 2rem;
   --xxl-font-size: 3rem;
