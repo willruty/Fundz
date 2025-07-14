@@ -16,9 +16,9 @@ export default function LandingPage() {
             <div id="banner-bg"></div>
 
             <header id="navbar">
-                <img src="/y_full_logo.png" alt="logo" />
+                <img src="/fundz/y_full_logo.png" alt="logo" />
                 <div className="navbar-buttons">
-                    <a href="/fundz/auth">
+                    <a href="/fundz/auth?mode=login">
                         <button className="default-button" id="login">
                             Login
                         </button>
@@ -48,9 +48,9 @@ export default function LandingPage() {
                     </div>
 
                     <div id="banner-img">
-                        <img src="/filled_phone_mockup.png" alt="phone-version" id="phone" />
+                        <img src="/fundz/filled_phone_mockup.png" alt="phone-version" id="phone" />
                         <div id="desktop-img">
-                            <img src="/finance_homepage.png" alt="desktop-version" id="desktop" />
+                            <img src="/fundz/finance_homepage.png" alt="desktop-version" id="desktop" />
                         </div>
                     </div>
                 </section>
@@ -84,7 +84,7 @@ export default function LandingPage() {
                             </div>
                         </div>
 
-                        <img src="/filled_phone_mockup.png" alt="phone-version" id="phone" />
+                        <img src="/fundz/filled_phone_mockup.png" alt="phone-version" id="phone" />
                     </div>
                 </section>
 
@@ -118,7 +118,7 @@ export default function LandingPage() {
 
                 <section id="features">
                     <div className="feature">
-                        <img src="finance_homepage.png" alt="" className="graficos features-image" />
+                        <img src="/fundz/finance_homepage.png" alt="" className="graficos features-image" />
                         <p className="graficos features-text">
                             Veja seus gastos virando gráficos tão claros que até
                             aquele seu amigo de humanas entenderia. Saiba onde foi parar seu dinheiro:
@@ -126,21 +126,21 @@ export default function LandingPage() {
                         </p>
                     </div>
                     <div className="feature">
-                        <img src="finance_homepage.png" alt="" className="semestre features-image" />
+                        <img src="/fundz/finance_homepage.png" alt="" className="semestre features-image" />
                         <p className="semestre features-text">
                             Crie alertas pra provas, entregas e trabalhos em grupo (mesmo que você vá fazer tudo sozinho de novo).
                             Seu semestre, visualizado de um jeito que até o professor aprovaria.
                         </p>
                     </div>
                     <div className="feature">
-                        <img src="../public/finance_homepage.png" alt="" className="roles features-image" />
+                        <img src="/fundz/finance_homepage.png" alt="" className="roles features-image" />
                         <p className="roles features-text">
                             Marque os rolês, conte as partidas de truco e divida os gastos com precisão cirúrgica.
                             Fundz ajuda você a manter a amizade mesmo depois da bebedeira.
                         </p>
                     </div>
                     <div className="feature">
-                        <img src="finance_homepage.png" alt="" className="portabilidade features-image" />
+                        <img src="/fundz/finance_homepage.png" alt="" className="portabilidade features-image" />
                         <p className="portabilidade features-text">
                             Use o Fundz no celular no meio da aula, no PC
                             enquanto finge que estuda ou no bar entre uma rodada e outra. Sincronizado em tudo, porque universitário vive em movimento.
@@ -150,7 +150,7 @@ export default function LandingPage() {
                 </section>
 
                 <section id="final-call">
-                    <img src="../public/Y_full_logo.png" alt="" />
+                    <img src="/fundz/y_full_logo.png" alt="" />
                     <div>
                         <p>Você vive a rotina. A gente deixa ela mais fácil. Vem pro Fundz.</p>
                         <a href="/fundz/auth"><button className="default-button">Bora organizar isso!</button></a>
@@ -167,11 +167,11 @@ export default function LandingPage() {
                             </div>
                             <a href="/fundz/auth"><button className="default-button">Organizar minha vida</button></a>
                         </div>
-                        <img src="../public/filled_phone_mockup.png" alt="" />
+                        <img src="/fundz/filled_phone_mockup.png" alt="" />
                     </div>
 
                     <div id="rapido" className="cta-card">
-                        <img src="../public/filled_phone_mockup.png" alt="" />
+                        <img src="/fundz/filled_phone_mockup.png" alt="" />
                         <div id="rapido-bottom-div">
                             <h1>Rápido.</h1>
                             <p>Escolha o que controlar: <br />grana, provas e festas...</p>
@@ -183,12 +183,12 @@ export default function LandingPage() {
                             <h1>Prático.</h1>
                             <p>Visualize tudo em gráficos, calendários e notificações, direto ao ponto.</p>
                         </div>
-                        <img src="../public/filled_phone_mockup.png" alt="" />
+                        <img src="/fundz/filled_phone_mockup.png" alt="" />
                     </div>
                 </section>
 
                 <footer>
-                    <img src="../public/w_full_logo.png" alt="" />
+                    <img src="/fundz/w_full_logo.png" alt="" />
                     <h3>"Feito por quem também tá devendo nota."</h3>
                     <p>© 2025 Fundz — Feito por William R. Macedo</p>
                 </footer>

@@ -5,17 +5,17 @@ const benefitsData = [
     {
         title: 'Controle financeiro inteligente',
         description: 'Visualize, planeje e acompanhe suas finanças com gráficos e estatísticas simples.',
-        image: '../public/money.jpg'
+        image: '/fundz/money.jpg'
     },
     {
         title: 'Facilidade na vida universitária',
         description: 'Organize horários, trabalhos e provas para não se perder na bagunça acadêmica.',
-        image: '../public/study.jpg'
+        image: '/fundz/study.jpg'
     },
     {
         title: 'Eventos e festas organizadas',
         description: 'Participe e gerencie eventos com facilidade: de rolezinhos a festas da rep.',
-        image: '../public/redcups2.jpg'
+        image: '/fundz/redcups2.jpg'
     }
 ];
 

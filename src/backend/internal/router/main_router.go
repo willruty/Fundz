@@ -15,9 +15,10 @@ import (
 func configRouter() cors.Config {
 	config := cors.DefaultConfig()
 	config.AddAllowHeaders("*")
-	config.AllowAllOrigins = true
-	config.AllowMethods = []string{"POST", "GET", "DELETE", "PATCH", "PUT"}
-	config.ExposeHeaders = []string{"file_name"}
+	config.AllowOrigins = []string{"http://localhost:5173"}
+	config.AllowMethods = []string{"POST", "GET", "DELETE", "PUT"}
+	config.ExposeHeaders = []string{"Origin", "Content-Type"}
+	config.AllowCredentials = true
 	return config
 }
 

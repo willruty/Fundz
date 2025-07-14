@@ -5,7 +5,7 @@ div.auth-container {
     justify-content: center;
     padding: 1rem;
 
-    & a.go-back{
+    & a.go-back {
         position: absolute;
         top: 3%;
         left: 2%;
@@ -14,6 +14,7 @@ div.auth-container {
     & div.auth-box {
         width: 100%;
         max-width: 600px;
+        text-align: center;
         background-color: var(--primary-color);
         padding: 2rem;
         border-radius: 16px;
@@ -26,6 +27,7 @@ div.auth-container {
             color: var(--secondary-color);
             margin-bottom: 1.5rem;
         }
+
         & p {
             font-family: "Inter", sans-serif;
             font-size: var(--regular-font-size);
@@ -48,6 +50,8 @@ div.auth-container {
             color: var(--black);
             font-size: 1rem;
             outline: none;
+            width: 100%;
+            margin: 10px 0px;
         }
 
         .auth-input::placeholder {
@@ -61,7 +65,7 @@ div.auth-container {
 
         & button.auth-button {
             width: 100%;
-            padding: 0.75rem;
+            padding: 1rem;
             background-color: var(--secondary-color);
             color: white;
             font-weight: 600;
@@ -69,6 +73,7 @@ div.auth-container {
             border-radius: 12px;
             cursor: pointer;
             transition: background-color 0.2s ease;
+            margin: 10px 0px;
 
             &:hover {
                 background-color: var(--secondary-color-hover);
@@ -77,14 +82,19 @@ div.auth-container {
 
         & div.auth-footer {
             margin-top: 1rem;
-            text-align: center;
+            display: flex;
+            justify-content: center;
 
-            & a.auth-link {
+            & button.auth-link,
+            a.auth-link {
+                display: inline-block;
                 font-size: 0.875rem;
                 color: #a1a1aa;
                 text-decoration: none;
                 transition: color 0.2s ease;
                 margin: 15px;
+                background: none;
+                border: none;
 
                 &.auth-link:hover {
                     color: #ffffff;

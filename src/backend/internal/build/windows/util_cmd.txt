@@ -1,5 +1,6 @@
-Comando pra iniciar serviço postgres
+Comando pra iniciar e parar serviço postgres
 -> net start postgresql-x64-17
+-> net stop postgresql-x64-17
 
 printar estrutura de arquivos projeto
 -> tree /f
