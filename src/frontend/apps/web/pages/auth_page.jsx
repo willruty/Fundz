@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import '../assets/styles/auth.css';
 import '../assets/styles/global.css';
 
 export default function AuthPage() {
 
+    const navigate = useNavigate();
     const location = useLocation();
     const [form, setForm] = useState({ name: '', email: '', password: '' })
     const [isRegister, setIsRegister] = useState(true)
@@ -29,19 +30,28 @@ export default function AuthPage() {
         e.preventDefault();
         const endpoint = isRegister ? 'user/auth/register' : 'user/auth/login'
         const payload = isRegister ? form : { email: form.email, password: form.password };
-        console.log("Payload enviado:", payload);
 
         try {
             const response = await fetch(endpoint, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(form),
+                body: JSON.stringify(payload),
             })
 
-            const data = await response.json()
+            const raw = await response.text();
+            let data;
 
-            if (!response.ok) throw new Error(data.message || 'Erro desconhecido')
-            console.log('Sucesso: ', data)
+            try {
+                data = JSON.parse(raw);
+            } catch {
+                data = { message: raw }
+            }
+
+            if (!response.ok) throw new Error(data.erro || data.message || raw)
+
+            localStorage.setItem("token", data.token);
+            setErr("");
+            navigate("/home");
 
         } catch (err) {
             setErr(err.message)
@@ -92,11 +102,12 @@ export default function AuthPage() {
                         className="auth-input"
                     />
 
-                    {error && <p className="auth-error">{error}</p>}
-
                     <button type="submit" className="auth-button">
                         {isRegister ? 'Cadastrar' : 'Entrar'}
                     </button>
+
+                    {error && <p className="auth-error" style={{ margin: '15px', color: '#ff4444' }}>{error}</p>}
+
                 </form>
 
                 <div className="auth-footer">

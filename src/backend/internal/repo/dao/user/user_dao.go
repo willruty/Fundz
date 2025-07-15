@@ -27,6 +27,16 @@ func GetUserByEmail(email string) (usuario.UserAccount, error) {
 	return user, nil
 }
 
+func GetUserById(id string) (usuario.UserAccount, error) {
+	var user usuario.UserAccount
+
+	if err := database.DB.Model(&usuario.UserAccount{}).Where("user_id = ?", id).First(&user).Error; err != nil {
+		return user, err
+	}
+
+	return user, nil
+}
+
 // -------
 // Update
 // -------

@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 // -------
@@ -28,15 +29,21 @@ func Register(c *gin.Context) {
 		return
 	}
 	user.Password = hashedPassword
+	user.User_id = uuid.NewString()
 
 	if err := dao.CreateUser(user); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": gin.H{
-		"message": "registrado com sucesso",
-	},
+	token, err := service.GenerateJWT(user.User_id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro ao gerar token"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"token": token,
 	})
 }
 
@@ -57,12 +64,12 @@ func Login(c *gin.Context) {
 
 	user, err := dao.GetUserByEmail(req.Email)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": "email ou senha inválidos"})
+		c.JSON(http.StatusBadRequest, gin.H{"erro": "Email ou senha inválidos"})
 		return
 	}
 
 	if !util.CheckPasswordHash(req.Password, user.Password) {
-		c.JSON(http.StatusBadRequest, gin.H{"erro": "email ou senha inválidos"})
+		c.JSON(http.StatusBadRequest, gin.H{"erro": "Email ou senha inválidos"})
 		return
 	}
 
@@ -72,9 +79,21 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": gin.H{
-		"jwt": token,
-	},
+	c.JSON(http.StatusOK, gin.H{
+		"token": token,
+	})
+}
+
+func ValidateToken(c *gin.Context) {
+	userID, exists := c.Get("userID")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token inválido"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Token válido",
+		"user_id":  userID,
 	})
 }
 
@@ -109,4 +128,3 @@ func DeleteUserById(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": "row deleted"})
 }
-

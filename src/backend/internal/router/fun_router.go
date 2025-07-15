@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupFunRouter(rg *gin.RouterGroup) int {
+func SetupFunRouter(rg *gin.RouterGroup) {
 
 	fun := rg.Group("/fun")
 	{
@@ -46,6 +46,4 @@ func SetupFunRouter(rg *gin.RouterGroup) int {
 			game_type.DELETE("/:id", controller.DeleteGameTypeById)
 		}
 	}
-
-	return 15
 }

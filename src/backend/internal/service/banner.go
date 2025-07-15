@@ -2,7 +2,7 @@ package service
 
 import "fmt"
 
-func PrintBanner(endpoints string) {
+func PrintBanner() {
 	banner := `
  ________ ___  ___  ________   ________  ________                                                           
 |\  _____\\  \|\  \|\   ___  \|\   ___ \|\_____  \                                                          
@@ -13,9 +13,6 @@ func PrintBanner(endpoints string) {
     \|__|    \|_______|\|__| \|__|\|_______|\|_______|                                                      
 
 Serviço rodando na porta 8080
-
-Endpoits:
-` + endpoints
-
+`
 	fmt.Println(banner)
 }

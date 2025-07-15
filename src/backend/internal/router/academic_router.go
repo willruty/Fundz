@@ -6,7 +6,7 @@ import (
 	controller "fundz/internal/controller/academic"
 )
 
-func SetupAcademicRouter(rg *gin.RouterGroup) int {
+func SetupAcademicRouter(rg *gin.RouterGroup) {
 
 	academic := rg.Group("/academic")
 	{
@@ -76,6 +76,4 @@ func SetupAcademicRouter(rg *gin.RouterGroup) int {
 		}
 
 	}
-
-	return 15
 }

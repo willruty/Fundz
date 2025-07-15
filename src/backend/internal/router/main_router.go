@@ -1,7 +1,6 @@
 package router
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
@@ -43,20 +42,14 @@ func SetupMainRouter() *gin.Engine {
 	route.Use(cors.New(configRouter()))
 
 	main := route.Group("/fundz")
-
-	academicEndpointsCount := SetupAcademicRouter(main)
-	funEndpointsCount := SetupFunRouter(main)
-	financeEndpointsCount := SetupFinanceRouter(main)
-	userEndpointsCount := SetupUserRouter(main)
-
-	endpoints := fmt.Sprintf("Academic -> %d | ", academicEndpointsCount) +
-		fmt.Sprintf("Fun -> %d | ", funEndpointsCount) +
-		fmt.Sprintf("Finance -> %d | ", financeEndpointsCount) +
-		fmt.Sprintf("User -> %d", userEndpointsCount)
-
-	service.PrintBanner(endpoints)
-
 	main.GET("/heath", controller.GetHealth)
+
+	SetupUserRouter(main)
+	SetupAcademicRouter(main)
+	SetupFunRouter(main)
+	SetupFinanceRouter(main)
+
+	service.PrintBanner()
 
 	return route
 }
