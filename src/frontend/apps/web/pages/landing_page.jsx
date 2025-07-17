@@ -1,4 +1,4 @@
-import "../assets/landing/global.css";
+import "../assets/styles/global.css";
 import "../assets/landing/navbar.css";
 import "../assets/landing/banner.css";
 import "../assets/landing/benefits.css";

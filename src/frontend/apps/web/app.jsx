@@ -5,6 +5,7 @@ import AuthPage from "./pages/auth_page.jsx";
 import FunHomePage from "./pages/fun_home_page.jsx";
 import AcademicHomePage from "./pages/academic_home_page.jsx";
 import FinanceHomePage from "./pages/finance_home_page.jsx";
+import ProfilePage from "./pages/profile_page.jsx";
 import HomePage from "./pages/home_page.jsx";
 
 function PrivateRoute() {
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/fun" element={<FunHomePage />} />
         <Route path="/academic" element={<AcademicHomePage />} />
         <Route path="/finance" element={<FinanceHomePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
 
     </Routes>

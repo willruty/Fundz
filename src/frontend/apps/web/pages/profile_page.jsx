@@ -2,7 +2,8 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "../components/navbar"
 
-export default function HomePage() {
+export default function FunHomePage() {
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -39,11 +40,8 @@ export default function HomePage() {
     }, [])
 
     return (
-
         <main>
-            <Navbar />
-            <h1>Home Page</h1>
-            <p>Bem-vindo! Você está autenticado 🎉</p>
+            <h1>Profile config Page</h1>
         </main>
     )
 }
