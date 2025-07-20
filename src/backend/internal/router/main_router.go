@@ -1,9 +1,6 @@
 package router
 
 import (
-	"os"
-	"strings"
-
 	"fundz/internal/controller"
 	"fundz/internal/service"
 
@@ -24,21 +21,11 @@ func configRouter() cors.Config {
 func SetupMainRouter() *gin.Engine {
 
 	gin.SetMode(gin.ReleaseMode)
-	var modeDebug bool
-	if len(os.Args) > 1 {
-		if strings.ToLower(os.Args[1]) == "-debug" {
-			modeDebug = true
-			gin.SetMode(gin.DebugMode)
-		}
-	}
+	gin.SetMode(gin.DebugMode)
 
 	route := gin.New()
 	route.Use(gin.Recovery())
-
-	if modeDebug {
-		route.Use(gin.Logger())
-	}
-
+	route.Use(gin.Logger())
 	route.Use(cors.New(configRouter()))
 
 	main := route.Group("/fundz")

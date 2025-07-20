@@ -1,6 +1,9 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "../components/navbar"
+import Service_container from "../components/service_container"
+import "../assets/styles/global.css"
+import "../assets/styles/finance_page.css"
 
 export default function FinanceHomePage() {
 
@@ -38,11 +41,99 @@ export default function FinanceHomePage() {
                 navigate("/auth")
             })
     }, [])
-    
+
     return (
         <main>
             <Navbar />
-            <h1>Finance Home Page</h1>
+            <Service_container titulo="Eae, qual a boa de hoje?" frase="Bem vindo ao Finance Home Page">
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br />
+            </Service_container>
         </main>
     )
 }

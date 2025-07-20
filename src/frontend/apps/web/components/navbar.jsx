@@ -3,7 +3,7 @@ import "../assets/styles/navbar.css"
 export default function Navbar() {
 
     return (
-        <main>
+        <header>
             <div id="service_navbar">
 
                 <div id="navbar_links">
@@ -51,6 +51,6 @@ export default function Navbar() {
                 </div>
 
             </div>
-        </main>
+        </header>
     )
 }
