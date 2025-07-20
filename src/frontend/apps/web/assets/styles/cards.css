@@ -1,0 +1,77 @@
+div.balance-card {
+    background: var(--primary-color);
+    width: 25%;
+    padding: 1.5%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+
+    & img#card-img {
+        width: 30px;
+        height: 30px;
+    }
+
+    & div#description {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin-top: 10px;
+
+        & h1 {
+            color: var(--white);
+            font-weight: 400;
+            font-size: var(--xxl-font-size);
+        }
+
+        & p {
+            color: var(--white);
+            opacity: .6;
+            font-size: var(--regular-font-size);
+        }
+    }
+}
+
+div.category-card {
+    background: var(--primary-color);
+    width: 50%;
+    padding: 1.5%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+
+    & img#card-img {
+        width: 30px;
+        height: 30px;
+    }
+
+    & div#description {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin-top: 10px;
+
+        & h1 {
+            color: var(--white);
+            font-weight: 400;
+            font-size: var(--xxl-font-size);
+        }
+
+        & p {
+            color: var(--white);
+            opacity: .6;
+            font-size: var(--regular-font-size);
+        }
+    }
+}
+
+div.graphic-card{
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 1.5%;
+    width: 75%;
+}
+
+div.percentage-card{
+    background: var(--gray-900);
+    border-radius: var(--border-radius);
+    padding: 1.5%;
+    width: 15%;
+}

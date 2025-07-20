@@ -1,3 +1,9 @@
 body{
     background: var(--bg-color);
 }
+
+div#content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}

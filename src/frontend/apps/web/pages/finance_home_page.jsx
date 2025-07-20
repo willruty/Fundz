@@ -5,6 +5,9 @@ import Service_container from "../components/service_container"
 import "../assets/styles/global.css"
 import "../assets/styles/finance_page.css"
 
+import { BalanceSummaryCard, CategoryExpenseCard, LineGraphCard, PercentageCard }
+    from "../components/cards"
+
 export default function FinanceHomePage() {
 
     const navigate = useNavigate()
@@ -46,93 +49,15 @@ export default function FinanceHomePage() {
         <main>
             <Navbar />
             <Service_container titulo="Eae, qual a boa de hoje?" frase="Bem vindo ao Finance Home Page">
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
+
+                <div id="content">
+                    <BalanceSummaryCard iconSrc="64x.ico" description="Saldo atual" amount="1.234.567,89" />
+                    <CategoryExpenseCard iconSrc="64x.ico" description="Categoria mais frequente" amount="1.234.567,89" categoryLabel="Alimentação" />
+                    <PercentageCard topic="Em comparação com o mês passado" percentage="12" />
+                    <PercentageCard topic="Em comparação com a semana p[assada" percentage="125" />
+                    <LineGraphCard />
+                </div>
+                
             </Service_container>
         </main>
     )
