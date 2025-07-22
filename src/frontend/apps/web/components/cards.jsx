@@ -30,15 +30,6 @@ export function CategoryExpenseCard({ iconSrc, description, amount, categoryLabe
     );
 }
 
-// Card de 75%: pode ser um gráfico ou algo mais visual
-export function LineGraphCard() {
-    return (
-        <div className="graphic-card">
-            <h1>Gráfico bolado</h1>
-        </div>
-    );
-}
-
 // Card de 10%: mostra uma porcentagem comparada com algum tópico
 export function PercentageCard({ topic, percentage }) {
     return (
@@ -54,7 +45,7 @@ export function PercentageCard({ topic, percentage }) {
 }
 
 // Card de 25%: mostra a meta principal
-export function GoalCard({description, goalAmount, currentAmount, date}) {
+export function GoalCard({ description, goalAmount, currentAmount, date }) {
 
     const percentage = Math.round((currentAmount / goalAmount) * 100);
 
@@ -84,3 +75,4 @@ export function GoalCard({description, goalAmount, currentAmount, date}) {
         </div>
     );
 }
+

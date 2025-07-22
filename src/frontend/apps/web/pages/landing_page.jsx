@@ -12,7 +12,7 @@ import BenefitsSection from "../components/benefits_cards";
 
 export default function LandingPage() {
     return (
-        <main style={{ background: "#FEFDF9" }}>
+        <main style={{ background: "#FEFDF9", overflowX: "hidden" }}>
             <div id="banner-bg"></div>
 
             <header id="navbar">

@@ -5,7 +5,10 @@ import Service_container from "../components/service_container"
 import "../assets/styles/global.css"
 import "../assets/styles/finance_page.css"
 
-import { BalanceSummaryCard, CategoryExpenseCard, LineGraphCard, PercentageCard }
+import {
+    BalanceSummaryCard, CategoryExpenseCard,
+    LineGraphCard, PercentageCard,
+}
     from "../components/cards"
 
 export default function FinanceHomePage() {
@@ -55,9 +58,11 @@ export default function FinanceHomePage() {
                     <CategoryExpenseCard iconSrc="64x.ico" description="Categoria mais frequente" amount="1.234.567,89" categoryLabel="Alimentação" />
                     <PercentageCard topic="Em comparação com o mês passado" percentage="12" />
                     <PercentageCard topic="Em comparação com a semana p[assada" percentage="125" />
-                    <LineGraphCard />
                 </div>
-                
+                    <div width="100%" height="10%">
+                        <LineGraphCard />
+                    </div>
+
             </Service_container>
         </main>
     )
