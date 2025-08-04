@@ -6,7 +6,14 @@ import "../assets/styles/global.css"
 import "../assets/styles/finance_page.css"
 
 import {
-    BalanceSummaryCard, CategoryExpenseCard, PercentageCard, LineGraphCard, TransactionsTable, MainGoalCard
+    BalanceSummaryCard,
+    CategoryExpenseCard,
+    PercentageCard,
+    LineGraphCard,
+    TransactionsTable,
+    MainGoalCard,
+    GoalCard,
+    CategoryBarChart
 }
     from "../components/cards"
 
@@ -328,11 +335,18 @@ export default function FinanceHomePage() {
                 <div id="content">
                     <BalanceSummaryCard iconSrc="64x.ico" description="Saldo atual" amount="1.234.567,89" />
                     <CategoryExpenseCard iconSrc="64x.ico" description="Categoria mais frequente" amount="1.234.567,89" categoryLabel="Alimentação" />
+                    <CategoryBarChart title={"Categorias"} width={900} height={450} />
                     <PercentageCard topic="Em comparação com o mês passado" percentage="12" />
                     <PercentageCard topic="Em comparação com a semana passada" percentage="125" />
                     <LineGraphCard width={900} height={350} title={"Seu saldo ao longo do tempo"} />
                     <TransactionsTable transactions={transactions} />
-                    <MainGoalCard description="Meta principal" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                    <div className="goal-section">
+                        <MainGoalCard description="Meta principal" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                        <GoalCard description="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                        <GoalCard description="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                        <GoalCard description="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                        <GoalCard description="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                    </div>
                 </div>
             </Service_container>
         </main>

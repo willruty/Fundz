@@ -2,10 +2,20 @@ import "../assets/styles/cards.css";
 import React, { useState } from "react";
 import { FiPlus, FiFilter, FiMaximize } from "react-icons/fi";
 import { GrMoreVertical, GrBarChart } from "react-icons/gr";
+import { TbTargetArrow } from "react-icons/tb";
+import { IoWallet } from "react-icons/io5";
+import { CiCalendarDate } from "react-icons/ci";
+import { BiSolidCategory } from "react-icons/bi";
+import { HiChartSquareBar } from "react-icons/hi";
+
 import {
     LineChart,
     Line,
     ReferenceLine,
+    BarChart,
+    Bar,
+    Rectangle,
+    ResponsiveContainer,
     XAxis,
     YAxis,
     Legend,
@@ -16,8 +26,7 @@ import {
 export function BalanceSummaryCard({ iconSrc, description, amount }) {
     return (
         <div className="balance-card">
-            <img src={iconSrc} id="card-img" alt="Ícone do card" />
-            {/* menu de três pontos, se precisar adicionar depois */}
+            <IoWallet style={{ color: "var(--secondary-color)", width: "30px", height: "30px" }} />
 
             <div id="description">
                 <h1>R$ {amount}</h1>
@@ -28,16 +37,50 @@ export function BalanceSummaryCard({ iconSrc, description, amount }) {
 }
 
 // Card de 50%: mostra valor por categoria
-export function CategoryExpenseCard({ iconSrc, description, amount, categoryLabel }) {
+export function CategoryExpenseCard({ description, amount, categoryLabel }) {
     return (
         <div className="category-card">
-            <img src={iconSrc} id="card-img" alt="Ícone da categoria" />
-            {/* menu de três pontos, se quiser adicionar */}
-
+            <BiSolidCategory style={{ color: "var(--secondary-color)", width: "30px", height: "30px" }} />
             <div id="description">
                 <h1>R$ {amount} em<span style={{ color: "var(--secondary-color)" }}> {categoryLabel}</span></h1>
                 <p>{description}</p>
             </div>
+        </div>
+    );
+}
+
+export function CategoryBarChart({ width, height, title }) {
+
+    const categoryData = [
+        { category: "Alimentação", amount: 1200 },
+        { category: "Transporte", amount: 800 },
+        { category: "Educação", amount: 500 },
+        { category: "Lazer", amount: 300 },
+        { category: "Saúde", amount: 650 },
+    ];
+
+    return (
+        <div className="category-graphic-card ">
+            <h1>{title}</h1>
+            <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                    width={width}
+                    height={height}
+                    data={categoryData}
+                    margin={{
+                        top: 30,
+                        right: 30,
+                        left: 10,
+                        bottom: 40,
+                    }}
+                >
+                    <XAxis dataKey="category" />
+                    <YAxis />
+                    <Legend />
+                    <Tooltip contentStyle={{ backgroundColor: "var(--white)", border: "none", borderRadius: "15px" }} />
+                    <Bar dataKey="amount" name="quantia" fill="var(--primary-color)" activeBar={<Rectangle fill="var(--secondary-color)" />} />
+                </BarChart>
+            </ResponsiveContainer>
         </div>
     );
 }
@@ -51,38 +94,6 @@ export function PercentageCard({ topic, percentage }) {
             <div id="percentage">
                 <h1>{percentage}%</h1>
                 {/* arrow up or down */}
-            </div>
-        </div>
-    );
-}
-
-// Card de 25%: mostra a meta principal
-export function GoalCard({ description, goalAmount, currentAmount, date }) {
-
-    const percentage = Math.round((currentAmount / goalAmount) * 100);
-
-    return (
-        <div className="goal-card">
-            <h1>Meta Principal</h1>
-            <p>{description}</p>
-
-            <div className="stats">
-                <img src="" alt="" />
-                <p>Valor desejado: R$ {goalAmount}</p>
-            </div>
-
-            <div className="stats">
-                <img src="" alt="" />
-                <p>Valor acumulado: R$ {currentAmount}</p>
-            </div>
-
-            <div className="stats">
-                <img src="" alt="" />
-                <p>Data: {date}</p>
-            </div>
-
-            <div className="progress-bar">
-                <p>Progresso: {percentage}%</p>
             </div>
         </div>
     );
@@ -151,7 +162,7 @@ export function TransactionsTable({ transactions }) {
         <div className="transactions-table">
             <div className="table-bar">
                 <div className="left">
-                    <span className="icon">📊</span>
+                    <HiChartSquareBar style={{ color: "var(--secondary-color)", width: "30px", height: "30px" }} />
                     <span className="title">Transações recentes</span>
                 </div>
                 <div className="right">
@@ -208,14 +219,35 @@ export function MainGoalCard({ description, goalAmount, currentAmount, date }) {
     return (
         <div className="main-goal-card"><h1>Meta Principal</h1>
             <p>{description}</p>
-            <div className="stats"><img src="" alt="" /><p>Valor desejado: R$ {goalAmount}</p></div>
-            <div className="stats"><img src="" alt="" /><p>Valor acumulado: R$ {currentAmount}</p></div>
-            <div className="stats"><img src="" alt="" /><p>Data: {date}</p></div>
+            <div className="stats"><TbTargetArrow style={{ color: "var(--secondary-color)", width: "25px", height: "25px" }} />
+                <p>Valor desejado: R$ {goalAmount}</p>
+            </div>
+            <div className="stats"><IoWallet style={{ color: "var(--secondary-color)", width: "25px", height: "25px" }} />
+                <p>Valor acumulado: R$ {currentAmount}</p>
+            </div>
+            <div className="stats"><CiCalendarDate style={{ color: "var(--secondary-color)", width: "25px", height: "25px" }} />
+                <p>Data: {date}</p>
+            </div>
+
             <div className="progress-bar">
-                <p style={{color: "var(--secondary-color)"}}>Progresso: {percentage}%</p>
+                <p style={{ color: "var(--secondary-color)" }}>Progresso: {percentage}%</p>
                 <div className="bar-container">
                     <div className="bar-fill" style={{ width: `${percentage}%` }}></div>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+export function GoalCard({ description, goalAmount, date }) {
+
+    return (
+        <div className="goal-card">
+            <div className="card-stats"><TbTargetArrow style={{ color: "var(--secondary-color)", width: "25px", height: "25px" }} />
+            <h1>Meta</h1>
+            <p>{description}</p>
+                <p>Valor desejado: R$ {goalAmount}</p>
+                <p>Data: {date}</p>
             </div>
         </div>
     );

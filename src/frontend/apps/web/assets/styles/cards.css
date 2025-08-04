@@ -62,6 +62,16 @@ div.category-card {
     }
 }
 
+div.category-graphic-card {
+    width: 100%;
+    max-width: 700px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
 div.graphic-card {
     background-color: var(--primary-color);
     border-radius: var(--border-radius);
@@ -252,4 +262,21 @@ div.transactions-table {
         transition: width 0.3s ease-in-out;
     }
 
+}
+
+div.goal-section {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+    gap: 1rem;
+    
+    & div.card-stats {
+        display: flex;
+        flex-direction: column;
+        background: var(--gray-900);
+        border-radius: var(--border-radius);
+        padding: 10px;
+    }
 }
