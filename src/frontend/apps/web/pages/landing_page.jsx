@@ -11,6 +11,7 @@ import "../assets/landing/footer.css";
 import BenefitsSection from "../components/benefits_cards";
 
 export default function LandingPage() {
+    console.log("Landing Page");
     return (
         <main style={{ background: "#FEFDF9", overflowX: "hidden" }}>
             <div id="banner-bg"></div>

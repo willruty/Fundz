@@ -1,6 +1,6 @@
 div.balance-card {
     background: var(--primary-color);
-    width: 25%;
+    width: 100%;
     padding: 1.5%;
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -32,7 +32,7 @@ div.balance-card {
 
 div.category-card {
     background: var(--primary-color);
-    width: 50%;
+    width: 100%;
     padding: 1.5%;
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -62,16 +62,194 @@ div.category-card {
     }
 }
 
-div.graphic-card{
+div.graphic-card {
     background-color: var(--primary-color);
     border-radius: var(--border-radius);
     padding: 1.5%;
-    width: 75%;
+    width: 100%;
 }
 
-div.percentage-card{
+div.percentage-card {
     background: var(--gray-900);
     border-radius: var(--border-radius);
     padding: 1.5%;
-    width: 15%;
+    width: 100%;
+}
+
+div.line-graph-card {
+    background: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 1.5%;
+    width: 100%;
+
+    & h1 {
+        color: var(--white);
+    }
+}
+
+div.transactions-table {
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    background-color: #fff;
+    overflow: hidden;
+    width: 100%;
+    font-family: "Inter", sans-serif;
+
+    & .table-bar {
+        background: var(--primary-color);
+        color: white;
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & .left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            & .icon {
+                font-size: 1.2rem;
+            }
+
+            & .title {
+                font-weight: 600;
+                font-size: var(--l-font-size);
+            }
+        }
+
+        & .right {
+            display: flex;
+            gap: 0.75rem;
+
+            & .action-icon {
+                cursor: pointer;
+                font-size: 1.1rem;
+                transition: 0.2s;
+
+                &:hover {
+                    transform: scale(1.1);
+                    color: #fbbf24;
+                }
+            }
+        }
+    }
+
+    & table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+
+        & thead {
+            background-color: #f3f4f6;
+
+            & th {
+                padding: 10px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: #374151;
+                border-bottom: 1px solid #d1d5db;
+            }
+        }
+
+        & tbody {
+            & tr {
+                transition: 0.2s;
+
+                &:hover {
+                    background-color: #f9fafb;
+                }
+
+                & td {
+                    padding: 10px;
+                    font-size: 0.875rem;
+                    color: #374151;
+                    max-width: 160px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    border: 1px solid #e5e7eb;
+
+                    &.entrada {
+                        color: green;
+                        font-weight: bold;
+                    }
+
+                    &.saida {
+                        color: red;
+                        font-weight: bold;
+                    }
+
+                    &.desc {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+
+    & .expand-button {
+        width: 100%;
+        background: none;
+        border: none;
+        color: #1e3a8a;
+        font-weight: 500;
+        padding: 0.75rem;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.main-goal-card {
+    background: var(--primary-color);
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 400px;
+    font-family: "Inter", sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+    & h1 {
+        font-size: var(--xl-font-size);
+        color: var(--secondary-color);
+        margin-bottom: 0.75rem;
+    }
+
+    & p {
+        margin: 0.5rem 0;
+        color: var(--white);
+        font-size: 0.95rem;
+    }
+
+    & .stats {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+
+        & img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    & .bar-container {
+        background-color: #e5e7eb;
+        border-radius: 6px;
+        height: 10px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    & .bar-fill {
+        background-color: var(--secondary-color);
+        height: 100%;
+        border-radius: 6px;
+        transition: width 0.3s ease-in-out;
+    }
+
 }

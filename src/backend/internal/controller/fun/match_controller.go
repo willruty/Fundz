@@ -1,8 +1,8 @@
 package controller
 
 import (
-	dao "fundz/internal/repo/dao/fun"
-	entity "fundz/internal/repo/entity/fun"
+	dao "fundz/internal/model/dao/fun"
+	entity "fundz/internal/model/entity/fun"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

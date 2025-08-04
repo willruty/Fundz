@@ -3,7 +3,7 @@ package dao
 import (
 	"fmt"
 	database "fundz/internal/database"
-	"fundz/internal/repo/entity/academic"
+	"fundz/internal/model/entity/academic"
 )
 
 // -------

@@ -1,8 +1,8 @@
 package user
 
 import (
-	dao "fundz/internal/repo/dao/user"
-	usuario "fundz/internal/repo/entity/user"
+	dao "fundz/internal/model/dao/user"
+	usuario "fundz/internal/model/entity/user"
 	"fundz/internal/service"
 	"fundz/internal/util"
 	"net/http"
@@ -93,7 +93,7 @@ func ValidateToken(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Token válido",
-		"user_id":  userID,
+		"user_id": userID,
 	})
 }
 

@@ -1,14 +1,14 @@
 package finance
 
 import (
-	"fundz/internal/repo/entity/user"
+	usuario "fundz/internal/model/entity/user"
 	"time"
 )
 
 type Account struct {
 	Account_id string `gorm:"type:varchar(50);primaryKey" json:"account_id"`
 
-	User_id     string           `gorm:"type:uuid; primaryKey" json:"user_id"`
+	User_id     string              `gorm:"type:uuid; primaryKey" json:"user_id"`
 	UserAccount usuario.UserAccount `gorm:"foreignKey:User_id;references:User_id" json:"user_account"`
 
 	Account_name string `gorm:"type:varchar(50);not null" json:"account_name"`

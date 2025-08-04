@@ -2,7 +2,7 @@ package dao
 
 import (
 	database "fundz/internal/database"
-	entity "fundz/internal/repo/entity/finance"
+	entity "fundz/internal/model/entity/finance"
 )
 
 // -------

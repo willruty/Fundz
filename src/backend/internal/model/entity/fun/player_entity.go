@@ -1,14 +1,14 @@
 package fun
 
 import (
-	"fundz/internal/repo/entity/user"
+	usuario "fundz/internal/model/entity/user"
 	"time"
 )
 
 type Player struct {
-	Player_id  string `gorm:"type:uuid; default:uuid_generate_v4(); primaryKey" json:"player_id"`
-	
-	User_id     string           `gorm:"type:uuid; primaryKey" json:"user_id"`
+	Player_id string `gorm:"type:uuid; default:uuid_generate_v4(); primaryKey" json:"player_id"`
+
+	User_id     string              `gorm:"type:uuid; primaryKey" json:"user_id"`
 	UserAccount usuario.UserAccount `gorm:"foreignKey:User_id;references:User_id" json:"user_account"`
 
 	Nickname   string `gorm:"type:varchar(50);not null" json:"nickname"`

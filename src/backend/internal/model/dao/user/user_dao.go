@@ -3,8 +3,7 @@ package dao
 import (
 	"fmt"
 	"fundz/internal/database"
-	usuario "fundz/internal/repo/entity/user"
-
+	usuario "fundz/internal/model/entity/user"
 )
 
 // -------
