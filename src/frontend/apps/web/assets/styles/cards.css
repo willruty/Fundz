@@ -1,14 +1,45 @@
+div.account-card {
+    background-color: var(--transparent-blue);
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: var(--transicao-padrao);
+    color: var(--primary-color);
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--transparent-blue-hover);
+        transition: var(--transicao-padrao);
+    }
+
+    & p {
+        padding: 10px;
+        color: var(--primary-color);
+    }
+}
+
+div.add-account-button {
+    background-color: var(--transparent-blue);
+    padding: 1.1rem;
+    border-radius: 9999px;
+    transition: var(--transicao-padrao);
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    display: flex;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--transparent-blue-hover);
+        transition: var(--transicao-padrao);
+    }
+}
+
 div.balance-card {
-    background: var(--primary-color);
+    background: var(--secondary-color);
     width: 100%;
     padding: 1.5%;
     border-radius: var(--border-radius);
     overflow: hidden;
-
-    & img#card-img {
-        width: 30px;
-        height: 30px;
-    }
 
     & div#description {
         display: flex;
@@ -17,14 +48,13 @@ div.balance-card {
         margin-top: 10px;
 
         & h1 {
-            color: var(--white);
+            color: var(--primary-color);
             font-weight: 400;
             font-size: var(--xxl-font-size);
         }
 
         & p {
             color: var(--white);
-            opacity: .6;
             font-size: var(--regular-font-size);
         }
     }
@@ -36,11 +66,6 @@ div.category-card {
     padding: 1.5%;
     border-radius: var(--border-radius);
     overflow: hidden;
-
-    & img#card-img {
-        width: 30px;
-        height: 30px;
-    }
 
     & div#description {
         display: flex;
@@ -64,7 +89,6 @@ div.category-card {
 
 div.category-graphic-card {
     width: 100%;
-    max-width: 700px;
     height: 300px;
     background-color: #fff;
     border-radius: 12px;
@@ -80,10 +104,53 @@ div.graphic-card {
 }
 
 div.percentage-card {
-    background: var(--gray-900);
+    background: var(--transparent-blue);
     border-radius: var(--border-radius);
-    padding: 1.5%;
+    padding: 10px;
     width: 100%;
+    height: 50%;
+
+    & #percentage {
+        position: sticky;
+        top: 100%;
+    }
+}
+
+div.daily-average-card {
+    position: relative;
+    background: var(--primary-color);
+    border-radius: var(--border-radius);
+    color: var(--white);
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    & #avg {
+        z-index: 2;
+        position: relative;
+        top: 58%;
+        left: 1%;
+        background: ;
+
+        & h1 {
+            font-weight: 300;
+            font-size: var(--xxl-font-size);
+        }
+
+        & p {
+            color: var(--secondary-color);
+        }
+    }
+
+    .chart-background {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        opacity: 0.4;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 div.line-graph-card {
@@ -131,17 +198,6 @@ div.transactions-table {
         & .right {
             display: flex;
             gap: 0.75rem;
-
-            & .action-icon {
-                cursor: pointer;
-                font-size: 1.1rem;
-                transition: 0.2s;
-
-                &:hover {
-                    transform: scale(1.1);
-                    color: #fbbf24;
-                }
-            }
         }
     }
 
@@ -215,17 +271,20 @@ div.transactions-table {
 
 .main-goal-card {
     background: var(--primary-color);
-    border: 1px solid #d1d5db;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     padding: 1.5rem;
-    max-width: 400px;
-    font-family: "Inter", sans-serif;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    min-width: 350px;
 
-    & h1 {
-        font-size: var(--xl-font-size);
-        color: var(--secondary-color);
-        margin-bottom: 0.75rem;
+    div.card-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row-reverse;
+
+        & h1 {
+            font-size: var(--xl-font-size);
+            color: var(--secondary-color);
+        }
     }
 
     & p {
@@ -246,37 +305,61 @@ div.transactions-table {
         }
     }
 
-    & .bar-container {
-        background-color: #e5e7eb;
-        border-radius: 6px;
-        height: 10px;
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-    }
+    & div.progress-bar {
+        position: sticky;
+        top: 100%;
 
-    & .bar-fill {
-        background-color: var(--secondary-color);
-        height: 100%;
-        border-radius: 6px;
-        transition: width 0.3s ease-in-out;
-    }
+        & .bar-container {
+            background-color: #e5e7eb;
+            border-radius: 6px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
 
+        & .bar-fill {
+            background-color: var(--secondary-color);
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.3s ease-in-out;
+        }
+    }
 }
 
 div.goal-section {
     display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
+    flex-direction: row;
     width: 100%;
-    justify-content: space-around;
     gap: 1rem;
-    
-    & div.card-stats {
+
+    & div.goal-cards {
         display: flex;
-        flex-direction: column;
-        background: var(--gray-900);
-        border-radius: var(--border-radius);
-        padding: 10px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+
+        & div.card-stats {
+            background: var(--transparent-blue);
+            border-radius: var(--border-radius);
+            padding: 10px;
+            width: 400px;
+
+            & div.card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                & div.card-title {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+
+            & p {
+                margin: 3px;
+            }
+        }
     }
 }

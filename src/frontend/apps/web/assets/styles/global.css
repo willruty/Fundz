@@ -15,7 +15,8 @@
   --primary-color: #1B365D;
   --secondary-color: #FFD100;
   --secondary-color-hover: #ffde4b;
-  --card-bg: #e7e7e7;
+  --transparent-blue: #a9cbff3d;
+  --transparent-blue-hover: #5297ff3d;
 
   --gray-900: #ebebeb;
   --gray-800: #dbdbdb;
@@ -41,20 +42,13 @@
   font-style: normal;
 }
 
-a button.default-button {
+.action-icon {
   cursor: pointer;
-  text-decoration: none;
-  border: none;
-  padding: 10px;
-
-  font-size: var(--default-font-size);
-  color: var(--primary-color);
-  background: var(--secondary-color);
-  border-radius: var(--border-radius);
-  transition: color 0.3s ease;
-  font-weight: 600;
+  font-size: 1.1rem;
+  transition: 0.2s;
 
   &:hover {
-    background: #ffd768;
+    transform: scale(1.1);
+    color: #fbbf24;
   }
 }

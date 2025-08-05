@@ -13,9 +13,12 @@ import {
     TransactionsTable,
     MainGoalCard,
     GoalCard,
-    CategoryBarChart
+    CategoryBarChart,
+    AccountCard,
+    AddAccountButton,
+    DailyAverageCard
 }
-    from "../components/cards"
+    from "../components/finance_cards"
 
 export default function FinanceHomePage() {
 
@@ -333,20 +336,60 @@ export default function FinanceHomePage() {
             <Service_container titulo="Eae, qual a boa de hoje?" frase="Bem vindo ao Finance Home Page">
 
                 <div id="content">
-                    <BalanceSummaryCard iconSrc="64x.ico" description="Saldo atual" amount="1.234.567,89" />
-                    <CategoryExpenseCard iconSrc="64x.ico" description="Categoria mais frequente" amount="1.234.567,89" categoryLabel="Alimentação" />
-                    <CategoryBarChart title={"Categorias"} width={900} height={450} />
-                    <PercentageCard topic="Em comparação com o mês passado" percentage="12" />
-                    <PercentageCard topic="Em comparação com a semana passada" percentage="125" />
-                    <LineGraphCard width={900} height={350} title={"Seu saldo ao longo do tempo"} />
-                    <TransactionsTable transactions={transactions} />
-                    <div className="goal-section">
-                        <MainGoalCard description="Meta principal" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
-                        <GoalCard description="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
-                        <GoalCard description="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
-                        <GoalCard description="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
-                        <GoalCard description="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                    <div className="accounts-menu">
+                        <h2 id="accounts-title" style={{ marginBottom: "10px" }}>Contas</h2>
+                        <div className="accounts">
+                            <AccountCard title={"Conta Corrente"} />
+                            <AccountCard title={"Poupança"} />
+                            <AccountCard title={"Cartão de crédito"} />
+                            <AddAccountButton />
+                        </div>
                     </div>
+
+                    <div className="balance">
+                        <BalanceSummaryCard iconSrc="64x.ico" description="Saldo atual" amount="1.234.567,89" />
+                    </div>
+
+                    <div className="category">
+                        <CategoryExpenseCard iconSrc="64x.ico" description="Categoria mais frequente" amount="1.234.567,89" categoryLabel="Alimentação" />
+                    </div>
+
+                    <div className="comparation-stats">
+                        <div className="percentage-stats">
+                            <PercentageCard topic="Em comparação com o mês passado" percentage="12" />
+                            <PercentageCard topic="Em comparação com a semana passada" percentage="125" />
+                        </div>
+
+                        <div className="daily-avg">
+                            <DailyAverageCard dailyAverage={"1.234.567,89"} transactions={transactions}/>
+                        </div>
+
+                        <div className="category-chart">
+                            <CategoryBarChart title={"Categorias principais"} width={900} height={450} />
+                        </div>
+                    </div>
+
+                    <div className="line-graphic">
+                        <LineGraphCard width={1560} height={350} title={"Seu saldo ao longo dos ultimos 30 dias"} />
+                    </div>
+
+                    <div className="transaction-table">
+                        <TransactionsTable transactions={transactions} />
+                    </div>
+
+                    <h1 id="goals-title">Metas</h1>
+                    <div className="goal-section">
+                        <MainGoalCard title="Meta principal" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                        <div className="goal-cards">
+                            <GoalCard title="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                            <GoalCard title="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                            <GoalCard title="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                            <GoalCard title="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                            <GoalCard title="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                            <GoalCard title="Meta secundária" goalAmount="1.234.567,89" currentAmount="534.567,89" date="2025-08-25" />
+                        </div>
+                    </div>
+
                 </div>
             </Service_container>
         </main>

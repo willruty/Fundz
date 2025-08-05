@@ -5,8 +5,9 @@ import { GrMoreVertical, GrBarChart } from "react-icons/gr";
 import { TbTargetArrow } from "react-icons/tb";
 import { IoWallet } from "react-icons/io5";
 import { CiCalendarDate } from "react-icons/ci";
-import { BiSolidCategory } from "react-icons/bi";
+import { BiSolidCategory, BiCalculator } from "react-icons/bi";
 import { HiChartSquareBar } from "react-icons/hi";
+import { FaPlus } from "react-icons/fa";
 
 import {
     LineChart,
@@ -16,6 +17,8 @@ import {
     Bar,
     Rectangle,
     ResponsiveContainer,
+    AreaChart,
+    Area,
     XAxis,
     YAxis,
     Legend,
@@ -26,7 +29,7 @@ import {
 export function BalanceSummaryCard({ iconSrc, description, amount }) {
     return (
         <div className="balance-card">
-            <IoWallet style={{ color: "var(--secondary-color)", width: "30px", height: "30px" }} />
+            <IoWallet style={{ color: "var(--primary-color)", width: "30px", height: "30px" }} />
 
             <div id="description">
                 <h1>R$ {amount}</h1>
@@ -44,6 +47,115 @@ export function CategoryExpenseCard({ description, amount, categoryLabel }) {
             <div id="description">
                 <h1>R$ {amount} em<span style={{ color: "var(--secondary-color)" }}> {categoryLabel}</span></h1>
                 <p>{description}</p>
+            </div>
+        </div>
+    );
+}
+
+// Card de 10%: mostra uma porcentagem comparada com algum tópico
+export function PercentageCard({ topic, percentage }) {
+    return (
+        <div className="percentage-card">
+            <p>{topic}</p>
+
+            <div id="percentage">
+                <h1>{percentage}%</h1>
+                {/* arrow up or down */}
+            </div>
+        </div>
+    );
+}
+
+export function DailyAverageCard({ dailyAverage }) {
+    const transactions = [
+        {
+            transaction_id: "uuid1",
+            date: "2025-08-01T10:23:00",
+            description: "Mensalidade da faculdade",
+            amount: 550.00,
+            type: "saida",
+            category: "Educação",
+            receiver: "Universidade ABC"
+        },
+        {
+            transaction_id: "uuid2",
+            date: "2025-08-01T15:12:00",
+            description: "Bolsa de estudos",
+            amount: 100.00,
+            type: "entrada",
+            category: "Bolsa",
+            receiver: "Governo Federal"
+        },
+        {
+            transaction_id: "uuid2",
+            date: "2025-08-01T15:12:00",
+            description: "Bolsa de estudos",
+            amount: 700.00,
+            type: "entrada",
+            category: "Bolsa",
+            receiver: "Governo Federal"
+        },
+        {
+            transaction_id: "uuid2",
+            date: "2025-08-01T15:12:00",
+            description: "Bolsa de estudos",
+            amount: 200.00,
+            type: "entrada",
+            category: "Bolsa",
+            receiver: "Governo Federal"
+        },
+        {
+            transaction_id: "uuid2",
+            date: "2025-08-01T15:12:00",
+            description: "Bolsa de estudos",
+            amount: 900.00,
+            type: "entrada",
+            category: "Bolsa",
+            receiver: "Governo Federal"
+        }
+    ];
+
+    return (
+        <div className="daily-average-card">
+            <BiCalculator style={{ color: "var(--secondary-color)", width: "30px", height: "30px" }} />
+            <div id="avg">
+                <h1>R$ {dailyAverage}</h1>
+                {/* arrow up or down */}
+                <p>Média diária dos ultimos 7 dias</p>
+            </div>
+
+            <div className="chart-background">
+                <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart
+                        width={500}
+                        height={400}
+                        data={transactions}
+                        margin={{
+                            top: -120,
+                            right: 0,
+                            left: -70,
+                            bottom: -30,
+                        }}
+                    >
+                        <defs>
+                            <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="40%" stopColor="var(--secondary-color)" stopOpacity={1} />
+                                <stop offset="100%" stopColor="#000" stopOpacity={1} />
+                            </linearGradient>
+                        </defs>
+                        <XAxis dataKey="date" />
+                        <YAxis />
+                        <Area
+                            type="basis"
+                            dataKey="amount"
+                            stroke="var(--secondary-color)"
+                            fill="url(#colorGradient)"
+                            fillOpacity={0.2}
+                            dot={false}
+                            activeDot={false}
+                        />
+                    </AreaChart>
+                </ResponsiveContainer>
             </div>
         </div>
     );
@@ -78,23 +190,9 @@ export function CategoryBarChart({ width, height, title }) {
                     <YAxis />
                     <Legend />
                     <Tooltip contentStyle={{ backgroundColor: "var(--white)", border: "none", borderRadius: "15px" }} />
-                    <Bar dataKey="amount" name="quantia" fill="var(--primary-color)" activeBar={<Rectangle fill="var(--secondary-color)" />} />
+                    <Bar dataKey="amount" name="quantia" fill="var(--primary-color)" activeBar={<Rectangle fill="var(--secondary-color)" />} animationDuration={2000} />
                 </BarChart>
             </ResponsiveContainer>
-        </div>
-    );
-}
-
-// Card de 10%: mostra uma porcentagem comparada com algum tópico
-export function PercentageCard({ topic, percentage }) {
-    return (
-        <div className="percentage-card">
-            <p>{topic}</p>
-
-            <div id="percentage">
-                <h1>{percentage}%</h1>
-                {/* arrow up or down */}
-            </div>
         </div>
     );
 }
@@ -211,14 +309,18 @@ export function TransactionsTable({ transactions }) {
     );
 }
 
-export function MainGoalCard({ description, goalAmount, currentAmount, date }) {
+export function MainGoalCard({ title, goalAmount, currentAmount, date }) {
     const goal = parseFloat(goalAmount.replace(/\./g, '').replace(',', '.'));
     const current = parseFloat(currentAmount.replace(/\./g, '').replace(',', '.'));
     const percentage = Math.round((current / goal) * 100);
 
     return (
-        <div className="main-goal-card"><h1>Meta Principal</h1>
-            <p>{description}</p>
+        <div className="main-goal-card">
+            <div className="card-title">
+                <GrMoreVertical className="action-icon" style={{ color: "var(--secondary-color)", width: "25px", height: "25px" }} />
+                <h1>{title}</h1>
+            </div>
+            <p>Meta principal</p>
             <div className="stats"><TbTargetArrow style={{ color: "var(--secondary-color)", width: "25px", height: "25px" }} />
                 <p>Valor desejado: R$ {goalAmount}</p>
             </div>
@@ -239,16 +341,44 @@ export function MainGoalCard({ description, goalAmount, currentAmount, date }) {
     );
 }
 
-export function GoalCard({ description, goalAmount, date }) {
+export function GoalCard({ title, goalAmount, date }) {
 
     return (
         <div className="goal-card">
-            <div className="card-stats"><TbTargetArrow style={{ color: "var(--secondary-color)", width: "25px", height: "25px" }} />
-            <h1>Meta</h1>
-            <p>{description}</p>
-                <p>Valor desejado: R$ {goalAmount}</p>
-                <p>Data: {date}</p>
+            <div className="card-stats">
+
+                <div className="card-header">
+                    <div className="card-title">
+                        <TbTargetArrow style={{ color: "var(--secondary-color)", width: "25px", height: "25px" }} />
+                        <h1>{title}</h1>
+                    </div>
+                    <GrMoreVertical className="action-icon" />
+                </div>
+
+                <div className="description">
+                    <p>Meta secundária</p>
+                    <p>Valor desejado: R$ {goalAmount}</p>
+                    <p>Data: {date}</p>
+                </div>
             </div>
+        </div>
+    );
+}
+
+export function AccountCard({ title }) {
+
+    return (
+        <div className="account-card">
+            <p>{title}</p>
+        </div>
+    );
+}
+
+export function AddAccountButton() {
+
+    return (
+        <div className="add-account-button">
+            <FaPlus />
         </div>
     );
 }

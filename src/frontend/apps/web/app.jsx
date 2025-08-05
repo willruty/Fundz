@@ -10,7 +10,7 @@ import HomePage from "./pages/home_page.jsx";
 
 function PrivateRoute() {
   const token = localStorage.getItem("token");
-  return token ? <Outlet /> : <Navigate to="/fundz/auth?mode=login" />;
+  return token ? <Outlet /> : <Navigate to="/fundz/auth?mode=login" />; 
 }
 
 export default function App() {
