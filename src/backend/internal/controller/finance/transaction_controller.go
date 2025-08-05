@@ -75,7 +75,7 @@ func UpdateTransactionById(c *gin.Context) {
 		return
 	}
 
-	if err := dao.UpdateTransactionById(input, input.Transaction_id); err != nil {
+	if err := dao.UpdateTransactionById(input, input.TransactionId); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}
