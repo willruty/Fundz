@@ -6,7 +6,7 @@ import "../assets/styles/global.css"
 import "../assets/styles/finance_page.css"
 
 import {
-    BalanceSummaryCard,
+    BalanceSummaryContainer,
     CategoryExpenseCard,
     PercentageCard,
     LineGraphCard,
@@ -347,7 +347,7 @@ export default function FinanceHomePage() {
                     </div>
 
                     <div className="balance">
-                        <BalanceSummaryCard iconSrc="64x.ico" description="Saldo atual" amount="1.234.567,89" />
+                        <BalanceSummaryContainer />
                     </div>
 
                     <div className="category">

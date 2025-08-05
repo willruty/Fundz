@@ -75,7 +75,7 @@ func UpdateSubjectById(c *gin.Context) {
 		return
 	}
 
-	if err := dao.UpdateSubjectById(input, input.Subject_id); err != nil {
+	if err := dao.UpdateSubjectById(input, input.SubjectId); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}

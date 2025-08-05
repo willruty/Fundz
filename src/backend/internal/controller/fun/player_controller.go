@@ -75,7 +75,7 @@ func UpdatePlayerById(c *gin.Context) {
 		return
 	}
 
-	if err := dao.UpdatePlayerById(input, input.Player_id); err != nil {
+	if err := dao.UpdatePlayerById(input, input.PlayerId); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}

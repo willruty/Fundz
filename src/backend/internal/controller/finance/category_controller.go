@@ -75,7 +75,7 @@ func UpdateCategoryById(c *gin.Context) {
 		return
 	}
 
-	if err := dao.UpdateCategoryById(input, input.Category_id); err != nil {
+	if err := dao.UpdateCategoryById(input, input.CategoryId); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}

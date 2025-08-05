@@ -29,14 +29,14 @@ func Register(c *gin.Context) {
 		return
 	}
 	user.Password = hashedPassword
-	user.User_id = uuid.NewString()
+	user.UserId = uuid.NewString()
 
 	if err := dao.CreateUser(user); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error()})
 		return
 	}
 
-	token, err := service.GenerateJWT(user.User_id)
+	token, err := service.GenerateJWT(user.UserId)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro ao gerar token"})
 		return
@@ -73,7 +73,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	token, err := service.GenerateJWT(user.User_id)
+	token, err := service.GenerateJWT(user.UserId)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro ao gerar token"})
 		return
@@ -108,7 +108,7 @@ func UpdateUserById(c *gin.Context) {
 		return
 	}
 
-	if err := dao.UpdateUserById(input, input.User_id); err != nil {
+	if err := dao.UpdateUserById(input, input.UserId); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}

@@ -75,7 +75,7 @@ func UpdateMatchById(c *gin.Context) {
 		return
 	}
 
-	if err := dao.UpdateMatchById(input, input.Match_id); err != nil {
+	if err := dao.UpdateMatchById(input, input.MatchId); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"erro": "Failed to update record " + err.Error()})
 		return
 	}

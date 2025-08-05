@@ -1,5 +1,5 @@
 import "../assets/styles/cards.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiPlus, FiFilter, FiMaximize } from "react-icons/fi";
 import { GrMoreVertical, GrBarChart } from "react-icons/gr";
 import { TbTargetArrow } from "react-icons/tb";
@@ -25,8 +25,47 @@ import {
     Tooltip,
 } from 'recharts';
 
+export function BalanceSummaryContainer() {
+    const [transactions, setTransactions] = useState([]);
+    const [totalBalance, setTotalBalance] = useState(0);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch("http://localhost:8080/fundz/finance/transaction/", {
+                    method: "GET",
+                });
+                const data = await response.json();
+                const transactionsArray = data.results;
+
+                const balance = transactionsArray.reduce((acc, transaction) => {
+                const amount = parseFloat(transaction.amount);
+
+                    return transaction.type === "entrada"
+                        ? acc + amount
+                        : acc - amount;
+                }, 0);
+
+                setTransactions(transactionsArray);
+                setTotalBalance(balance);
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    return (
+        <BalanceSummaryCard
+            amount={totalBalance.toFixed(2)}
+            description="Saldo Atual"
+        />
+    );
+}
+
 // Card de 25% de largura: mostra saldo
-export function BalanceSummaryCard({ iconSrc, description, amount }) {
+export function BalanceSummaryCard({ description, amount }) {
     return (
         <div className="balance-card">
             <IoWallet style={{ color: "var(--primary-color)", width: "30px", height: "30px" }} />

@@ -10,9 +10,9 @@ import (
 
 func configRouter() cors.Config {
 	config := cors.DefaultConfig()
-	config.AddAllowHeaders("*")
 	config.AllowOrigins = []string{"http://localhost:5173"}
 	config.AllowMethods = []string{"POST", "GET", "DELETE", "PUT"}
+	config.AllowHeaders = []string{"Origin", "Content-Type", "Authorization"}
 	config.ExposeHeaders = []string{"Origin", "Content-Type"}
 	config.AllowCredentials = true
 	return config
@@ -20,7 +20,6 @@ func configRouter() cors.Config {
 
 func SetupMainRouter() *gin.Engine {
 
-	gin.SetMode(gin.ReleaseMode)
 	gin.SetMode(gin.DebugMode)
 
 	route := gin.New()
