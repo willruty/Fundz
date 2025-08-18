@@ -10,12 +10,12 @@ const benefitsData = [
     {
         title: 'Facilidade na vida universitária',
         description: 'Organize horários, trabalhos e provas para não se perder na bagunça acadêmica.',
-        image: '/fundz/study.jpg'
+        image: '/fundz/study-session.png'
     },
     {
         title: 'Eventos e festas organizadas',
         description: 'Participe e gerencie eventos com facilidade: de rolezinhos a festas da rep.',
-        image: '/fundz/redcups2.jpg'
+        image: '/fundz/friends.png'
     }
 ];
 
