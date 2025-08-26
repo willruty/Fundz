@@ -1,9 +1,11 @@
 div.account-card {
     background-color: var(--transparent-blue);
-    padding: 0.5rem;
     border-radius: 9999px;
     transition: var(--transicao-padrao);
-    color: var(--primary-color);
+
+    display: flex;  
+    align-items: center;
+    justify-content: center;
 
     &:hover {
         cursor: pointer;
@@ -12,8 +14,8 @@ div.account-card {
     }
 
     & p {
-        padding: 10px;
-        color: var(--primary-color);
+        margin: auto 10px;
+        color: var(--secondary-color);
     }
 }
 
@@ -166,7 +168,6 @@ div.line-graph-card {
 
 div.transactions-table {
     border-radius: 10px;
-    border: 1px solid #d1d5db;
     background-color: #fff;
     overflow: hidden;
     width: 100%;

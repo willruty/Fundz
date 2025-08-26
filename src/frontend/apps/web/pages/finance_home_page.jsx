@@ -337,7 +337,7 @@ export default function FinanceHomePage() {
 
                 <div id="content">
                     <div className="accounts-menu">
-                        <h2 id="accounts-title" style={{ marginBottom: "10px" }}>Contas</h2>
+                        <h2 id="accounts-title" style={{ marginBottom: "10px" , color: "white"}}>Contas</h2>
                         <div className="accounts">
                             <AccountCard title={"Conta Corrente"} />
                             <AccountCard title={"Poupança"} />

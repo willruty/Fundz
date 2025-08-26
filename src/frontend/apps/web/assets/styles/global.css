@@ -37,7 +37,7 @@
 
 @font-face {
   font-family: 'catchland';
-  src: url('../../../../assets/fonts/Catchland.otf') format('opentype');
+  src: url('../fonts/Catchland.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }

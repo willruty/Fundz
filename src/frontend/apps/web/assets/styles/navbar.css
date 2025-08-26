@@ -12,7 +12,7 @@ div#service_navbar {
     z-index: 100;
     background-color: var(--primary-color);
     padding: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-right: 1px solid #ffffff0e;
 
     & div#navbar_links {
         display: flex;

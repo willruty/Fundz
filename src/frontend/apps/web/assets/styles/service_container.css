@@ -1,10 +1,9 @@
 div#service_container {
-    background: var(--white);
+    background: var(--primary-color);
     width: 90%;
     margin: 2% auto 2% 7%;
     padding: 2%;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid red;
 
     & div#title {
         display: flex;
@@ -14,10 +13,9 @@ div#service_container {
         margin-bottom: 10px;
 
         & h1 {
-            color: var(--primary-color);
+            color: var(--white);
             font-family: 'catchland', sans-serif;
-            font-weight: 400;
-            font-size: var(--xl-font-size);
+            font-size: var(--l-font-size);
         }
 
         & div#service_text {
